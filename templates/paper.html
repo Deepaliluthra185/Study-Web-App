@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>PYQs - PYQHub</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9ff;
+            color: #0b1c30;
+            min-height: max(884px, 100dvh);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid #e2e8f0;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "surface-variant": "#d3e4fe",
+                "outline-variant": "#c3c6d7",
+                "primary-fixed": "#dbe1ff",
+                "on-surface": "#0b1c30",
+                "on-secondary-fixed": "#141d21",
+                "surface-container-highest": "#d3e4fe",
+                "secondary-fixed": "#dbe4ea",
+                "surface-container-lowest": "#ffffff",
+                "on-surface-variant": "#434655",
+                "on-error-container": "#93000a",
+                "on-background": "#0b1c30",
+                "on-error": "#ffffff",
+                "surface-container-low": "#eff4ff",
+                "on-tertiary-container": "#bdffdb",
+                "on-secondary-container": "#5d666b",
+                "on-primary": "#ffffff",
+                "secondary-container": "#dbe4ea",
+                "on-primary-fixed": "#00174b",
+                "surface-dim": "#cbdbf5",
+                "on-secondary": "#ffffff",
+                "surface-container-high": "#dce9ff",
+                "secondary-fixed-dim": "#bfc8ce",
+                "inverse-surface": "#213145",
+                "tertiary-fixed-dim": "#4edea3",
+                "background": "#f8f9ff",
+                "primary-fixed-dim": "#b4c5ff",
+                "on-primary-container": "#eeefff",
+                "surface-tint": "#0053db",
+                "secondary": "#576065",
+                "primary-container": "#2563eb",
+                "primary": "#004ac6",
+                "on-primary-fixed-variant": "#003ea8",
+                "on-secondary-fixed-variant": "#3f484d",
+                "tertiary-fixed": "#6ffbbe",
+                "inverse-primary": "#b4c5ff",
+                "error": "#ba1a1a",
+                "on-tertiary-fixed-variant": "#005236",
+                "surface-bright": "#f8f9ff",
+                "on-tertiary": "#ffffff",
+                "tertiary-container": "#007d55",
+                "error-container": "#ffdad6",
+                "surface": "#f8f9ff",
+                "inverse-on-surface": "#eaf1ff",
+                "outline": "#737686",
+                "surface-container": "#e5eeff",
+                "on-tertiary-fixed": "#002113",
+                "tertiary": "#006242"
+              },
+              "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+              },
+              "spacing": {
+                "gutter": "16px",
+                "margin-mobile": "20px",
+                "xl": "32px",
+                "lg": "24px",
+                "base": "4px",
+                "sm": "12px",
+                "xs": "8px",
+                "md": "16px"
+              },
+              "fontFamily": {
+                "body-md": ["Inter"],
+                "headline-sm": ["Plus Jakarta Sans"],
+                "display-lg": ["Plus Jakarta Sans"],
+                "headline-md": ["Plus Jakarta Sans"],
+                "body-sm": ["Inter"],
+                "label-md": ["Inter"],
+                "display-lg-mobile": ["Plus Jakarta Sans"],
+                "body-lg": ["Inter"]
+              },
+              "fontSize": {
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                "display-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+    </script>
+</head>
+<body class="bg-surface overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-dim border-b border-outline-variant/30">
+    <div class="flex justify-between items-center px-margin-mobile py-sm w-full max-w-7xl mx-auto">
+        <div class="flex items-center gap-sm">
+            <a href="{% url 'home' %}" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors active:scale-95">
+                <span class="material-symbols-outlined text-primary dark:text-primary-fixed">arrow_back</span>
+            </a>
+            <h1 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed tracking-tight">PYQHub</h1>
+        </div>
+        <div class="relative w-64 hidden sm:block">
+            <form action="{% url 'questions' %}" method="GET" class="relative">
+                <input type="text" name="chapter" placeholder="Search Chapters..." class="w-full pl-10 pr-4 py-base rounded-full border border-outline-variant bg-surface-container-low text-on-surface text-body-sm focus:ring-primary focus:border-primary">
+                <span class="material-symbols-outlined absolute left-3 top-2.5 text-secondary text-[18px]">search</span>
+            </form>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="pt-24 pb-32 px-margin-mobile max-w-7xl mx-auto">
+    <!-- Hero Section & Search -->
+    <section class="mb-lg">
+        <h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-xs">Previous Year Questions</h2>
+        <p class="font-body-md text-body-md text-secondary mb-lg">Access the largest archive of verified past exam papers for focused revision.</p>
+        <div class="relative group">
+            <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                <span class="material-symbols-outlined text-outline">search</span>
+            </div>
+            <input id="paper-search-input" class="w-full h-[50px] pl-12 pr-4 bg-surface-container-low border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary font-body-md text-body-md transition-all outline-none" placeholder="Search by paper name, subject, or year..." type="text"/>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="mb-lg">
+        <div class="flex flex-col gap-md">
+            <!-- Subject Filter -->
+            <div class="flex flex-col gap-xs">
+                <span class="font-label-md text-label-md text-secondary uppercase tracking-widest px-1">Subject</span>
+                <div class="flex gap-xs overflow-x-auto no-scrollbar py-1">
+                    <button data-filter-subject="all" class="px-md py-xs rounded-full bg-primary text-on-primary font-label-md text-label-md whitespace-nowrap active:scale-95 transition-all">All Subjects</button>
+                    <button data-filter-subject="physics" class="px-md py-xs rounded-full bg-surface-container-high text-secondary hover:bg-surface-variant font-label-md text-label-md whitespace-nowrap active:scale-95 transition-all">Physics</button>
+                    <button data-filter-subject="maths" class="px-md py-xs rounded-full bg-surface-container-high text-secondary hover:bg-surface-variant font-label-md text-label-md whitespace-nowrap active:scale-95 transition-all">Mathematics</button>
+                    <button data-filter-subject="chemistry" class="px-md py-xs rounded-full bg-surface-container-high text-secondary hover:bg-surface-variant font-label-md text-label-md whitespace-nowrap active:scale-95 transition-all">Chemistry</button>
+                </div>
+            </div>
+            <!-- Year Filter -->
+            <div class="flex flex-col gap-xs">
+                <span class="font-label-md text-label-md text-secondary uppercase tracking-widest px-1">Exam Year</span>
+                <div class="flex gap-xs overflow-x-auto no-scrollbar py-1">
+                    <button data-filter-year="all" class="px-md py-xs rounded-full bg-primary text-on-primary font-label-md text-label-md whitespace-nowrap active:scale-95 transition-all">All Years</button>
+                    <button data-filter-year="2026" class="px-md py-xs rounded-full bg-surface-container-high text-secondary hover:bg-surface-variant font-label-md text-label-md whitespace-nowrap active:scale-95 transition-all">2026</button>
+                    <button data-filter-year="2025" class="px-md py-xs rounded-full bg-surface-container-high text-secondary hover:bg-surface-variant font-label-md text-label-md whitespace-nowrap active:scale-95 transition-all">2025</button>
+                    <button data-filter-year="2024" class="px-md py-xs rounded-full bg-surface-container-high text-secondary hover:bg-surface-variant font-label-md text-label-md whitespace-nowrap active:scale-95 transition-all">2024</button>
+                </div>
+            </div>
+            <!-- Syllabus Filter Toggle -->
+            <div class="flex items-center gap-xs mt-base px-1">
+                <input type="checkbox" id="toggle-syllabus-filter" checked class="rounded border-outline-variant text-primary focus:ring-primary h-4 w-4 bg-surface-container-low cursor-pointer">
+                <label for="toggle-syllabus-filter" id="syllabus-filter-label" class="text-body-sm font-semibold text-secondary select-none cursor-pointer">
+                    Show only My Syllabus (ICSE Class 10)
+                </label>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bento Grid List of Papers -->
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
+        {% for paper in papers %}
+        <!-- Paper Card -->
+        <div class="paper-card bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col gap-sm hover:shadow-lg transition-shadow relative overflow-hidden group"
+             data-subject="{{ paper.subject }}" data-year="{{ paper.year }}" data-board="{{ paper.board }}" data-class="{{ paper.class_name }}">
+            
+            <!-- Styled design color background elements -->
+            {% if forloop.counter0|divisibleby:3 %}
+                <div class="absolute top-0 right-0 w-24 h-24 bg-primary-fixed-dim/20 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
+            {% elif forloop.counter0|divisibleby:2 %}
+                <div class="absolute top-0 right-0 w-24 h-24 bg-tertiary-fixed-dim/20 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
+            {% else %}
+                <div class="absolute top-0 right-0 w-24 h-24 bg-secondary-fixed/30 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
+            {% endif %}
+
+            <div class="flex justify-between items-start z-10">
+                <div class="flex flex-col">
+                    <span class="font-label-md text-label-md text-primary font-bold uppercase">{{ paper.subject }}</span>
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface mt-1">{{ paper.subject }} Paper</h3>
+                </div>
+                <span class="bg-surface-container-high px-xs py-base rounded text-[10px] font-bold text-secondary">{{ paper.year }}</span>
+            </div>
+
+            <div class="flex flex-col gap-xs text-secondary mt-1 z-10">
+                <div class="flex items-center gap-xs">
+                    <span class="material-symbols-outlined text-[18px]">verified_user</span>
+                    <span class="font-body-sm text-body-sm">{{ paper.board }} • Class {{ paper.class_name }}</span>
+                </div>
+            </div>
+
+            <div class="mt-auto flex gap-sm pt-xs z-10">
+                <a href="{% url 'chapters' %}?board={{ paper.board }}&class_name={{ paper.class_name }}&subject={{ paper.subject }}" onclick="trackPracticePaper('{{ paper.id }}')" class="flex-1 h-[44px] flex items-center justify-center gap-xs bg-primary hover:bg-primary-container text-on-primary rounded-lg font-label-md text-label-md active:scale-95 transition-all text-center">
+                    <span class="material-symbols-outlined text-[18px]">edit_note</span>
+                    Practice Now
+                </a>
+                <a href="{{ paper.pdf.url }}" target="_blank" class="w-[44px] h-[44px] flex items-center justify-center border border-outline-variant rounded-lg text-secondary hover:bg-surface-container-high transition-colors active:scale-95">
+                    <span class="material-symbols-outlined">download</span>
+                </a>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-span-full py-xl text-center bg-surface-container-lowest border border-outline-variant rounded-xl">
+            <span class="material-symbols-outlined text-[48px] text-secondary mb-sm">find_in_page</span>
+            <p class="text-body-md text-secondary">No question papers uploaded yet.</p>
+            <p class="text-body-sm text-secondary/70 mt-xs">Upload past papers via the Django admin dashboard.</p>
+        </div>
+        {% endfor %}
+    </section>
+
+    <!-- Stats Visualization -->
+    <section class="mt-xl grid grid-cols-1 md:grid-cols-2 gap-lg">
+        <div class="bg-surface-container-low rounded-2xl p-lg flex flex-col gap-md">
+            <h4 class="font-headline-sm text-headline-sm text-on-surface">Your Progress</h4>
+            <div class="flex flex-col gap-sm">
+                <div class="flex justify-between items-end">
+                    <span class="font-body-sm text-body-sm text-secondary">Papers Solved</span>
+                    <span class="font-headline-md text-headline-md text-primary"><span id="solved-papers-count">0</span>/{{ papers|length }}</span>
+                </div>
+                <div class="h-2 w-full bg-secondary-fixed rounded-full overflow-hidden">
+                    <div id="papers-progress-bar" class="h-full bg-primary rounded-full" style="width: 0%"></div>
+                </div>
+                <p id="papers-progress-text" class="font-body-sm text-body-sm text-on-surface-variant">You've covered 0% of the archive. Keep it up!</p>
+            </div>
+        </div>
+        <div class="bg-surface-container-highest rounded-2xl p-lg flex items-center gap-lg">
+            <div class="flex-1">
+                <h4 class="font-headline-sm text-headline-sm text-on-surface">Offline Access</h4>
+                <p class="font-body-sm text-body-sm text-secondary mt-xs">Download papers and practice even without an internet connection.</p>
+            </div>
+            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-sm">
+                <span class="material-symbols-outlined text-primary text-[32px]">download_done</span>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm pb-xs pt-xs bg-surface-container-lowest dark:bg-on-surface border-t border-outline-variant/30 shadow-lg rounded-t-xl">
+    <!-- Dashboard -->
+    <a class="flex flex-col items-center justify-center text-secondary dark:text-outline-variant px-xs py-base hover:bg-surface-variant dark:hover:bg-on-secondary-fixed-variant transition-colors active:scale-90 transition-transform duration-200" href="{% url 'home' %}">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span class="font-label-md text-label-md">Dashboard</span>
+    </a>
+    <!-- Chapters -->
+    <a class="flex flex-col items-center justify-center text-secondary dark:text-outline-variant px-xs py-base hover:bg-surface-variant dark:hover:bg-on-secondary-fixed-variant transition-colors active:scale-90 transition-transform duration-200" href="{% url 'chapters' %}">
+        <span class="material-symbols-outlined">list_alt</span>
+        <span class="font-label-md text-label-md">Chapters</span>
+    </a>
+    <!-- Mock Tests -->
+    <a class="flex flex-col items-center justify-center text-secondary dark:text-outline-variant px-xs py-base hover:bg-surface-variant dark:hover:bg-on-secondary-fixed-variant transition-colors active:scale-90 transition-transform duration-200" href="{% url 'mock_tests' %}">
+        <span class="material-symbols-outlined">quiz</span>
+        <span class="font-label-md text-label-md">Mock Tests</span>
+    </a>
+    <!-- Profile -->
+    <a class="flex flex-col items-center justify-center text-secondary dark:text-outline-variant px-xs py-base hover:bg-surface-variant dark:hover:bg-on-secondary-fixed-variant active:scale-90 transition-transform duration-200" href="{% url 'profile' %}">
+        <span class="material-symbols-outlined">person</span>
+        <span class="font-label-md text-label-md">Profile</span>
+    </a>
+</nav>
+
+<script>
+    // Live filter logic
+    let selectedSubject = 'all';
+    let selectedYear = 'all';
+    let searchQuery = '';
+
+    const subjectButtons = document.querySelectorAll('[data-filter-subject]');
+    const yearButtons = document.querySelectorAll('[data-filter-year]');
+    const searchInput = document.getElementById('paper-search-input');
+    const cards = document.querySelectorAll('.paper-card');
+
+    function filterPapers() {
+        const showSyllabusOnly = document.getElementById('toggle-syllabus-filter').checked;
+        const studentBoard = localStorage.getItem('student_board');
+        const studentClass = localStorage.getItem('student_class');
+
+        cards.forEach(card => {
+            const sub = card.getAttribute('data-subject').toLowerCase();
+            const yr = card.getAttribute('data-year');
+            const board = card.getAttribute('data-board');
+            const className = card.getAttribute('data-class');
+            const text = card.textContent.toLowerCase();
+
+            const matchesSubject = (selectedSubject === 'all' || sub === selectedSubject);
+            const matchesYear = (selectedYear === 'all' || yr === selectedYear);
+            const matchesSearch = (searchQuery === '' || text.includes(searchQuery));
+            
+            let matchesSyllabus = true;
+            if (showSyllabusOnly) {
+                matchesSyllabus = (!studentBoard || board.toLowerCase() === studentBoard.toLowerCase()) && 
+                                  (!studentClass || className.toLowerCase() === studentClass.toLowerCase());
+            }
+
+            if (matchesSubject && matchesYear && matchesSearch && matchesSyllabus) {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    subjectButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            subjectButtons.forEach(b => {
+                b.classList.remove('bg-primary', 'text-on-primary');
+                b.classList.add('bg-surface-container-high', 'text-secondary');
+            });
+            btn.classList.add('bg-primary', 'text-on-primary');
+            btn.classList.remove('bg-surface-container-high', 'text-secondary');
+            selectedSubject = btn.getAttribute('data-filter-subject').toLowerCase();
+            filterPapers();
+        });
+    });
+
+    yearButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            yearButtons.forEach(b => {
+                b.classList.remove('bg-primary', 'text-on-primary');
+                b.classList.add('bg-surface-container-high', 'text-secondary');
+            });
+            btn.classList.add('bg-primary', 'text-on-primary');
+            btn.classList.remove('bg-surface-container-high', 'text-secondary');
+            selectedYear = btn.getAttribute('data-filter-year');
+            filterPapers();
+        });
+    });
+
+    searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value.toLowerCase();
+        filterPapers();
+    });
+
+    const syllabusCheckbox = document.getElementById('toggle-syllabus-filter');
+    if (syllabusCheckbox) {
+        syllabusCheckbox.addEventListener('change', () => {
+            filterPapers();
+        });
+    }
+
+    // Practice paper tracking & progress calculation
+    function trackPracticePaper(id) {
+        let practiced = JSON.parse(localStorage.getItem('practiced_papers') || '[]');
+        if (!practiced.includes(id)) {
+            practiced.push(id);
+            localStorage.setItem('practiced_papers', JSON.stringify(practiced));
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Sync syllabus filter label from localStorage
+        const studentBoard = localStorage.getItem('student_board') || 'ICSE';
+        const studentClass = localStorage.getItem('student_class') || '10';
+        const labelEl = document.getElementById('syllabus-filter-label');
+        if (labelEl) {
+            labelEl.textContent = `Show only My Syllabus (${studentBoard} Class ${studentClass})`;
+        }
+
+        // Apply initial filter
+        filterPapers();
+
+        const totalPapers = {{ papers|length|default:0 }};
+        const practiced = JSON.parse(localStorage.getItem('practiced_papers') || '[]');
+        
+        const practicedCount = Math.min(totalPapers, practiced.length);
+        const pct = totalPapers > 0 ? Math.round((practicedCount / totalPapers) * 100) : 0;
+        
+        const countEl = document.getElementById('solved-papers-count');
+        if (countEl) countEl.textContent = practicedCount;
+        
+        const barEl = document.getElementById('papers-progress-bar');
+        if (barEl) barEl.style.width = pct + '%';
+        
+        const textEl = document.getElementById('papers-progress-text');
+        if (textEl) textEl.textContent = `You've covered ${pct}% of the archive. Keep it up!`;
+    });
+</script>
+</body>
+</html>

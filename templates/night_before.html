@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Night Before Exam - PYQHub</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      const isNight = {% if sprint_active %}true{% else %}false{% endif %};
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "midnight": "#0b0c10",
+                    "midnight-light": "#1f2833",
+                    "accent-gold": "#f5b041",
+                    "accent-blue": "#45f3ff",
+                    "outline-variant": isNight ? "#3f4d5a" : "#c3c6d7",
+                    "surface-container-lowest": isNight ? "#151e29" : "#ffffff",
+                    "background": isNight ? "#0b0c10" : "#f8f9ff",
+                    "surface": isNight ? "#1f2833" : "#ffffff",
+                    "primary": isNight ? "#45f3ff" : "#004ac6",
+                    "primary-container": isNight ? "#151e29" : "#d3e4fe",
+                    "secondary": isNight ? "#a8b2c1" : "#576065",
+                    "on-surface": isNight ? "#f1f3f5" : "#0b1c30",
+                    "on-surface-variant": isNight ? "#a8b2c1" : "#434655",
+                    "outline": "#737686"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "gutter": "16px",
+                    "xl": "32px",
+                    "sm": "12px",
+                    "lg": "24px",
+                    "base": "4px",
+                    "md": "16px",
+                    "xs": "8px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "body-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f8f9ff;
+            -webkit-tap-highlight-color: transparent;
+            min-height: max(884px, 100dvh);
+        }
+        .canvas-bg {
+            background-image: radial-gradient(#e5eeff 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .bento-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .bento-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -8px rgba(0, 74, 198, 0.08);
+        }
+        .night-theme {
+            background-color: #0b0c10 !important;
+            color: #f1f3f5 !important;
+        }
+        .glow-card {
+            box-shadow: 0 0 15px rgba(69, 243, 255, 0.1);
+            border: 1px solid rgba(69, 243, 255, 0.15);
+        }
+        .glow-card:hover {
+            box-shadow: 0 0 20px rgba(69, 243, 255, 0.2);
+            border: 1px solid rgba(69, 243, 255, 0.3);
+        }
+        .glow-gold {
+            box-shadow: 0 0 15px rgba(245, 176, 65, 0.1);
+            border: 1px solid rgba(245, 176, 65, 0.15);
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface {% if sprint_active %}night-theme{% endif %}">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 {% if sprint_active %}bg-midnight-light border-b border-outline-variant/30{% else %}bg-surface dark:bg-surface-dim{% endif %}">
+    <div class="flex justify-between items-center px-margin-mobile py-sm w-full max-w-7xl mx-auto">
+        <div class="flex items-center gap-sm">
+            <a href="{% url 'home' %}" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high dark:hover:bg-surface-container-lowest transition-colors active:scale-95">
+                <span class="material-symbols-outlined text-primary dark:text-primary-fixed">arrow_back</span>
+            </a>
+            <h1 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed tracking-tight">One Night Before Exam</h1>
+        </div>
+        <span class="material-symbols-outlined {% if sprint_active %}text-accent-gold animate-pulse{% else %}text-primary{% endif %} text-[28px]">bedtime</span>
+    </div>
+</header>
+
+{% if not sprint_active %}
+<!-- Setup Goal Form (GET) -->
+<main class="pt-24 pb-32 px-margin-mobile max-w-2xl mx-auto min-h-screen canvas-bg">
+    <!-- Header Section -->
+    <section class="mb-xl text-center md:text-left">
+        <h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-xs font-extrabold tracking-tight">Final Sprint Setup</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant max-w-md md:mx-0 mx-auto">
+            Configure your upcoming examination goal to receive a personalized study roadmap and curated resources.
+        </p>
+    </section>
+
+    <!-- Form Container -->
+    <form method="POST" action="{% url 'night_before' %}" class="space-y-lg">
+        {% csrf_token %}
+        <input type="hidden" name="exam_type" id="exam_type_input" value="School Board">
+        <input type="hidden" name="prep_state" id="prep_state_input" value="Starting Out">
+
+        <!-- Bento Input Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+            <!-- Exam Name Card -->
+            <div class="md:col-span-2 bento-card bg-surface-container-lowest border border-outline-variant rounded-xl p-md">
+                <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">SELECT EXAM TYPE</label>
+                <div class="grid grid-cols-2 gap-xs">
+                    <button type="button" class="exam-btn flex items-center justify-center p-sm rounded-lg border border-primary bg-primary-container/10 transition-all font-label-md text-label-md text-on-surface-variant" onclick="selectExamType(this, 'School Board')">School Board</button>
+                    <button type="button" class="exam-btn flex items-center justify-center p-sm rounded-lg border border-outline-variant hover:border-primary transition-all font-label-md text-label-md text-on-surface-variant" onclick="selectExamType(this, 'University')">University</button>
+                    <button type="button" class="exam-btn flex items-center justify-center p-sm rounded-lg border border-outline-variant hover:border-primary transition-all font-label-md text-label-md text-on-surface-variant" onclick="selectExamType(this, 'MST')">MST</button>
+                    <button type="button" class="exam-btn flex items-center justify-center p-sm rounded-lg border border-outline-variant hover:border-primary transition-all font-label-md text-label-md text-on-surface-variant" onclick="selectExamType(this, 'Final Sem')">Final Sem</button>
+                </div>
+            </div>
+
+            <!-- Class / Year -->
+            <div class="md:col-span-2 bento-card bg-surface-container-lowest border border-outline-variant rounded-xl p-md">
+                <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">CLASS / YEAR</label>
+                <input name="class_year" required class="w-full px-sm py-sm bg-surface text-on-surface border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md placeholder:text-slate-400" placeholder="e.g. Class 10" type="text"/>
+            </div>
+
+            <!-- Subject Selection -->
+            <div class="bento-card bg-surface-container-lowest border border-outline-variant rounded-xl p-md">
+                <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">PRIMARY SUBJECT</label>
+                <select name="subject" class="w-full px-sm py-sm bg-surface text-on-surface border border-outline-variant rounded-lg focus:outline-none focus:border-primary font-body-md text-body-md">
+                    <option value="Physics" selected>Physics</option>
+                    <option value="Maths">Maths</option>
+                    <option value="Chemistry">Chemistry</option>
+                </select>
+            </div>
+
+            <!-- Exam Date -->
+            <div class="bento-card bg-surface-container-lowest border border-outline-variant rounded-xl p-md">
+                <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">EXAM DATE</label>
+                <input name="exam_date" required class="w-full px-sm py-sm bg-surface text-on-surface border border-outline-variant rounded-lg focus:outline-none focus:border-primary font-body-md text-body-md" type="date" value="2026-06-24"/>
+            </div>
+
+            <!-- Select Chapters -->
+            <div class="md:col-span-2 bento-card bg-surface-container-lowest border border-outline-variant rounded-xl p-md">
+                <label class="block font-label-md text-label-md text-on-surface-variant mb-md">SELECT CHAPTERS</label>
+                <div class="flex flex-wrap gap-sm">
+                    <button type="button" class="chapter-btn px-sm py-base rounded-full border border-primary text-primary font-label-md text-label-md bg-primary-container/10" onclick="toggleChapter(this)">Force & Energy</button>
+                    <button type="button" class="chapter-btn px-sm py-base rounded-full border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:border-primary" onclick="toggleChapter(this)">Thermodynamics</button>
+                    <button type="button" class="chapter-btn px-sm py-base rounded-full border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:border-primary" onclick="toggleChapter(this)">Calculus</button>
+                    <button type="button" class="chapter-btn px-sm py-base rounded-full border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:border-primary" onclick="toggleChapter(this)">Optics & Light</button>
+                </div>
+            </div>
+
+            <!-- Preparation Level (Visual Selection) -->
+            <div class="md:col-span-2 bento-card bg-surface-container-lowest border border-outline-variant rounded-xl p-md">
+                <label class="block font-label-md text-label-md text-on-surface-variant mb-md">CURRENT PREPARATION STATE</label>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-sm">
+                    <button type="button" class="prep-btn flex flex-col items-center justify-center gap-xs p-md rounded-lg border-2 border-primary bg-primary-container/10 transition-all group active:scale-95 text-center" onclick="selectPrepState(this, 'Starting Out')">
+                        <span class="material-symbols-outlined text-primary">timer_10_alt_1</span>
+                        <span class="font-label-md text-label-md text-on-surface-variant font-semibold">Starting Out</span>
+                    </button>
+                    <button type="button" class="prep-btn flex flex-col items-center justify-center gap-xs p-md rounded-lg border-2 border-outline-variant hover:border-primary transition-all group active:scale-95 text-center" onclick="selectPrepState(this, 'In Progress')">
+                        <span class="material-symbols-outlined text-outline group-hover:text-primary">trending_up</span>
+                        <span class="font-label-md text-label-md text-on-surface-variant">In Progress</span>
+                    </button>
+                    <button type="button" class="prep-btn flex flex-col items-center justify-center gap-xs p-md rounded-lg border-2 border-outline-variant hover:border-primary transition-all group active:scale-95 text-center" onclick="selectPrepState(this, 'Revision Phase')">
+                        <span class="material-symbols-outlined text-outline group-hover:text-primary">task_alt</span>
+                        <span class="font-label-md text-label-md text-on-surface-variant">Revision Phase</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Focus Intensity Card -->
+        <div class="bento-card bg-primary-container/5 border border-primary/20 rounded-xl p-md">
+            <div class="flex justify-between items-center mb-md">
+                <div>
+                    <h4 class="font-headline-sm text-headline-sm text-primary font-bold">Daily Focus Target</h4>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant">Set your daily study commitment hours.</p>
+                </div>
+                <span class="font-headline-md text-headline-md text-primary font-bold" id="hours-display">6 hrs</span>
+            </div>
+            <input name="focus_hours" class="w-full h-2 bg-secondary-container rounded-full appearance-none cursor-pointer accent-primary" max="12" min="1" oninput="updateHours(this.value)" type="range" value="6"/>
+            <div class="flex justify-between mt-xs font-label-md text-label-md text-outline">
+                <span>1 hr</span>
+                <span>6 hrs</span>
+                <span>12 hrs</span>
+            </div>
+        </div>
+
+        <!-- Action Button -->
+        <button type="submit" class="w-full h-[50px] bg-primary text-on-primary hover:bg-primary-container rounded-full font-label-md text-label-md flex items-center justify-center gap-xs shadow-lg active:scale-95 transition-all uppercase tracking-wider font-extrabold">
+            <span class="material-symbols-outlined">rocket_launch</span>
+            START FINAL SPRINT
+        </button>
+    </form>
+</main>
+
+<script>
+    function updateHours(val) {
+        document.getElementById('hours-display').textContent = val + ' hrs';
+    }
+
+    function selectExamType(btn, value) {
+        document.querySelectorAll('.exam-btn').forEach(b => {
+            b.classList.remove('border-primary', 'bg-primary-container/10');
+            b.classList.add('border-outline-variant');
+        });
+        btn.classList.add('border-primary', 'bg-primary-container/10');
+        btn.classList.remove('border-outline-variant');
+        document.getElementById('exam_type_input').value = value;
+    }
+
+    function selectPrepState(btn, value) {
+        document.querySelectorAll('.prep-btn').forEach(b => {
+            b.classList.remove('border-primary', 'bg-primary-container/10');
+            b.classList.add('border-outline-variant');
+            const icon = b.querySelector('span:first-child');
+            icon.classList.remove('text-primary');
+            icon.classList.add('text-outline');
+            const text = b.querySelector('span:last-child');
+            text.classList.remove('font-semibold');
+        });
+        btn.classList.add('border-primary', 'bg-primary-container/10');
+        btn.classList.remove('border-outline-variant');
+        const icon = btn.querySelector('span:first-child');
+        icon.classList.add('text-primary');
+        icon.classList.remove('text-outline');
+        const text = btn.querySelector('span:last-child');
+        text.classList.add('font-semibold');
+        document.getElementById('prep_state_input').value = value;
+    }
+
+    function toggleChapter(btn) {
+        btn.classList.toggle('border-primary');
+        btn.classList.toggle('text-primary');
+        btn.classList.toggle('bg-primary-container/10');
+        btn.classList.toggle('border-outline-variant');
+        btn.classList.toggle('text-on-surface-variant');
+    }
+</script>
+
+{% else %}
+<!-- Revision Guide Page (POST response) -->
+<main class="pt-24 px-margin-mobile max-w-5xl mx-auto space-y-lg">
+    <!-- Header Banner -->
+    <section class="glow-gold bg-surface-container-lowest rounded-2xl p-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-md">
+        <div class="space-y-xs">
+            <h2 class="font-display-lg text-accent-gold font-extrabold tracking-tight">Emergency Revision Checklist</h2>
+            <p class="text-secondary text-body-md">Custom plan for your upcoming <span class="text-white font-bold">{{ exam_type }}</span> on {{ exam_date|default:"Tomorrow" }}.</p>
+            <div class="flex flex-wrap gap-xs pt-xs">
+                <span class="px-sm py-base rounded-full text-label-md bg-surface-container-lowest/10 text-secondary border border-outline-variant font-semibold">
+                    Target: {{ class_year }} • {{ subject }}
+                </span>
+                <span class="px-sm py-base rounded-full text-label-md bg-surface-container-lowest/10 text-secondary border border-outline-variant font-semibold">
+                    Prep State: {{ prep_state }}
+                </span>
+                <span class="px-sm py-base rounded-full text-label-md bg-accent-blue/10 text-accent-blue font-semibold">
+                    Commitment: {{ focus_hours }} Hours
+                </span>
+            </div>
+        </div>
+        <div class="bg-accent-gold/10 text-accent-gold px-lg py-sm rounded-xl font-semibold border border-accent-gold/20 flex items-center gap-xs shrink-0">
+            <span class="material-symbols-outlined">wb_twilight</span>
+            <span>Emergency Active</span>
+        </div>
+    </section>
+
+    <!-- Formula Sheets & Repeated Questions Grid -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+        <!-- Critical Formulas Cheat Sheet -->
+        <div class="glow-card bg-surface-container-lowest rounded-2xl p-lg space-y-md">
+            <div class="flex items-center gap-xs border-b border-outline-variant/30 pb-sm">
+                <span class="material-symbols-outlined text-primary text-[28px]">calculate</span>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface">Formula Cheat Sheet</h3>
+            </div>
+            
+            <div class="space-y-sm">
+                {% if subject|lower == 'maths' %}
+                <!-- Maths Formula 1 -->
+                <div class="p-sm bg-midnight rounded-xl border border-outline-variant/20 flex justify-between items-center">
+                    <div>
+                        <p class="font-semibold text-on-surface">Quadratic Formula</p>
+                        <p class="text-secondary text-body-sm">x = (-b ± √(b² - 4ac)) / 2a</p>
+                    </div>
+                    <span class="text-xs text-primary bg-primary/10 px-sm py-base rounded-full">Roots</span>
+                </div>
+                <!-- Maths Formula 2 -->
+                <div class="p-sm bg-midnight rounded-xl border border-outline-variant/20 flex justify-between items-center">
+                    <div>
+                        <p class="font-semibold text-on-surface">Derivative of xⁿ</p>
+                        <p class="text-secondary text-body-sm">d/dx(xⁿ) = n * xⁿ⁻¹</p>
+                    </div>
+                    <span class="text-xs text-primary bg-primary/10 px-sm py-base rounded-full">Calculus</span>
+                </div>
+                <!-- Maths Formula 3 -->
+                <div class="p-sm bg-midnight rounded-xl border border-outline-variant/20 flex justify-between items-center">
+                    <div>
+                        <p class="font-semibold text-on-surface">Euler's Identity</p>
+                        <p class="text-secondary text-body-sm">e^(iπ) + 1 = 0</p>
+                    </div>
+                    <span class="text-xs text-primary bg-primary/10 px-sm py-base rounded-full">Analysis</span>
+                </div>
+                {% elif subject|lower == 'chemistry' %}
+                <!-- Chemistry Formula 1 -->
+                <div class="p-sm bg-midnight rounded-xl border border-outline-variant/20 flex justify-between items-center">
+                    <div>
+                        <p class="font-semibold text-on-surface">Ideal Gas Law</p>
+                        <p class="text-secondary text-body-sm">P * V = n * R * T</p>
+                    </div>
+                    <span class="text-xs text-primary bg-primary/10 px-sm py-base rounded-full">Gases</span>
+                </div>
+                <!-- Chemistry Formula 2 -->
+                <div class="p-sm bg-midnight rounded-xl border border-outline-variant/20 flex justify-between items-center">
+                    <div>
+                        <p class="font-semibold text-on-surface">Moles Calculation</p>
+                        <p class="text-secondary text-body-sm">n = m / M</p>
+                    </div>
+                    <span class="text-xs text-primary bg-primary/10 px-sm py-base rounded-full">Stoich</span>
+                </div>
+                <!-- Chemistry Formula 3 -->
+                <div class="p-sm bg-midnight rounded-xl border border-outline-variant/20 flex justify-between items-center">
+                    <div>
+                        <p class="font-semibold text-on-surface">Acidity Index</p>
+                        <p class="text-secondary text-body-sm">pH = -log[H⁺]</p>
+                    </div>
+                    <span class="text-xs text-primary bg-primary/10 px-sm py-base rounded-full">Acids</span>
+                </div>
+                {% else %}
+                <!-- Physics Formula 1 -->
+                <div class="p-sm bg-midnight rounded-xl border border-outline-variant/20 flex justify-between items-center">
+                    <div>
+                        <p class="font-semibold text-on-surface">Work Done</p>
+                        <p class="text-secondary text-body-sm">W = F * d * cos(θ)</p>
+                    </div>
+                    <span class="text-xs text-primary bg-primary/10 px-sm py-base rounded-full">Unit: Joules</span>
+                </div>
+                <!-- Physics Formula 2 -->
+                <div class="p-sm bg-midnight rounded-xl border border-outline-variant/20 flex justify-between items-center">
+                    <div>
+                        <p class="font-semibold text-on-surface">Power</p>
+                        <p class="text-secondary text-body-sm">P = W / t = F * v</p>
+                    </div>
+                    <span class="text-xs text-primary bg-primary/10 px-sm py-base rounded-full">Unit: Watts</span>
+                </div>
+                <!-- Physics Formula 3 -->
+                <div class="p-sm bg-midnight rounded-xl border border-outline-variant/20 flex justify-between items-center">
+                    <div>
+                        <p class="font-semibold text-on-surface">Kinetic Energy</p>
+                        <p class="text-secondary text-body-sm">K.E = 1/2 * m * v²</p>
+                    </div>
+                    <span class="text-xs text-primary bg-primary/10 px-sm py-base rounded-full">Unit: Joules</span>
+                </div>
+                <!-- Physics Formula 4 -->
+                <div class="p-sm bg-midnight rounded-xl border border-outline-variant/20 flex justify-between items-center">
+                    <div>
+                        <p class="font-semibold text-on-surface">Potential Energy</p>
+                        <p class="text-secondary text-body-sm">U = m * g * h</p>
+                    </div>
+                    <span class="text-xs text-primary bg-primary/10 px-sm py-base rounded-full">Unit: Joules</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Top Repeated Questions (Must Revise) -->
+        <div class="glow-card bg-surface-container-lowest rounded-2xl p-lg space-y-md">
+            <div class="flex items-center gap-xs border-b border-outline-variant/30 pb-sm">
+                <span class="material-symbols-outlined text-accent-gold text-[28px]">star</span>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface">Database High-Yield Qs</h3>
+            </div>
+            
+            <div class="space-y-sm">
+                {% for q in questions %}
+                <!-- Question item -->
+                <div class="p-sm bg-midnight rounded-xl border border-outline-variant/20 space-y-xs">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs text-accent-gold bg-accent-gold/10 px-sm py-base rounded-full">{{ q.chapter }}</span>
+                        <span class="text-secondary text-body-sm">{% if q.marks %}{{ q.marks }} Marks{% else %}Verified PYQ{% endif %}</span>
+                    </div>
+                    <p class="text-on-surface font-semibold text-body-md">{{ q.question_text }}</p>
+                    {% if q.question_image %}
+                    <div class="pt-xs">
+                        <img src="{{ q.question_image.url }}" alt="Question crop" class="max-w-full h-auto rounded-lg border border-outline-variant/30" loading="lazy" />
+                    </div>
+                    {% endif %}
+                </div>
+                {% empty %}
+                <div class="p-sm bg-midnight rounded-xl border border-outline-variant/20 text-center py-lg">
+                    <p class="text-secondary text-body-sm">No exam questions stored. Showing standard topics.</p>
+                </div>
+                <!-- Fallback item -->
+                <div class="p-sm bg-midnight rounded-xl border border-outline-variant/20 space-y-xs">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs text-accent-gold bg-accent-gold/10 px-sm py-base rounded-full">Force</span>
+                        <span class="text-secondary text-body-sm">4 Marks</span>
+                    </div>
+                    <p class="text-on-surface font-semibold text-body-md">State the conditions under which work done is zero.</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Study Guide Tips -->
+    <section class="glow-card bg-surface-container-lowest rounded-2xl p-lg space-y-md">
+        <div class="flex items-center gap-xs">
+            <span class="material-symbols-outlined text-primary">tips_and_updates</span>
+            <h3 class="font-headline-sm text-headline-sm text-on-surface">Last Minute Tips</h3>
+        </div>
+        <ul class="space-y-sm text-secondary list-disc pl-lg">
+            <li><strong class="text-on-surface">Focus on diagrams:</strong> Double-check ray diagrams, free fall pathways, and force vector setups.</li>
+            <li><strong class="text-on-surface">SI Units:</strong> Write proper units for all numerical answers to avoid small mark cuts.</li>
+            <li><strong class="text-on-surface">Time management:</strong> Secure easy marks first. Do not spend more than 5 minutes stuck on one question.</li>
+        </ul>
+    </section>
+</main>
+{% endif %}
+
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm pb-xs pt-xs {% if sprint_active %}bg-midnight-light border-t border-outline-variant/30{% else %}bg-surface-container-lowest dark:bg-on-surface border-t border-outline-variant/30 shadow-lg rounded-t-xl{% endif %}">
+    <!-- Dashboard -->
+    <a class="flex flex-col items-center justify-center text-secondary px-xs py-base hover:bg-surface-variant dark:hover:bg-on-secondary-fixed-variant active:scale-90 transition-transform duration-200" href="{% url 'home' %}">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span class="font-label-md text-label-md">Dashboard</span>
+    </a>
+    <!-- Chapters -->
+    <a class="flex flex-col items-center justify-center text-secondary px-xs py-base hover:bg-surface-variant dark:hover:bg-on-secondary-fixed-variant active:scale-90 transition-transform duration-200" href="{% url 'chapters' %}">
+        <span class="material-symbols-outlined">list_alt</span>
+        <span class="font-label-md text-label-md">Chapters</span>
+    </a>
+    <!-- Mock Tests -->
+    <a class="flex flex-col items-center justify-center text-secondary px-xs py-base hover:bg-surface-variant dark:hover:bg-on-secondary-fixed-variant active:scale-90 transition-transform duration-200" href="{% url 'mock_tests' %}">
+        <span class="material-symbols-outlined">quiz</span>
+        <span class="font-label-md text-label-md">Mock Tests</span>
+    </a>
+    <!-- Profile -->
+    <a class="flex flex-col items-center justify-center text-secondary px-xs py-base hover:bg-surface-variant dark:hover:bg-on-secondary-fixed-variant active:scale-90 transition-transform duration-200" href="{% url 'profile' %}">
+        <span class="material-symbols-outlined">person</span>
+        <span class="font-label-md text-label-md">Profile</span>
+    </a>
+</nav>
+</body>
+</html>

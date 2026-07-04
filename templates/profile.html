@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Profile - PYQHub</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#d3e4fe",
+                    "outline-variant": "#c3c6d7",
+                    "primary-fixed": "#dbe1ff",
+                    "on-surface": "#0b1c30",
+                    "on-secondary-fixed": "#141d21",
+                    "surface-container-highest": "#d3e4fe",
+                    "secondary-fixed": "#dbe4ea",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface-variant": "#434655",
+                    "on-error-container": "#93000a",
+                    "on-background": "#0b1c30",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#eff4ff",
+                    "on-tertiary-container": "#bdffdb",
+                    "on-secondary-container": "#5d666b",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#dbe4ea",
+                    "on-primary-fixed": "#00174b",
+                    "surface-dim": "#cbdbf5",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#dce9ff",
+                    "secondary-fixed-dim": "#bfc8ce",
+                    "inverse-surface": "#213145",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "background": "#f8f9ff",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "on-primary-container": "#eeefff",
+                    "surface-tint": "#0053db",
+                    "secondary": "#576065",
+                    "primary-container": "#2563eb",
+                    "primary": "#004ac6",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "on-secondary-fixed-variant": "#3f484d",
+                    "tertiary-fixed": "#6ffbbe",
+                    "inverse-primary": "#b4c5ff",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "surface-bright": "#f8f9ff",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#007d55",
+                    "error-container": "#ffdad6",
+                    "surface": "#f8f9ff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "outline": "#737686",
+                    "surface-container": "#e5eeff",
+                    "on-tertiary-fixed": "#002113",
+                    "tertiary": "#006242"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "margin-mobile": "20px",
+                    "xl": "32px",
+                    "lg": "24px",
+                    "base": "4px",
+                    "sm": "12px",
+                    "xs": "8px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "body-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+        body {
+            background-color: #f8f9ff;
+            -webkit-tap-highlight-color: transparent;
+            min-height: max(884px, 100dvh);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-dim border-b border-outline-variant/30">
+    <div class="flex justify-between items-center px-margin-mobile py-sm w-full max-w-7xl mx-auto">
+        <div class="flex items-center gap-sm">
+            <a href="{% url 'home' %}" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors active:scale-95">
+                <span class="material-symbols-outlined text-primary dark:text-primary-fixed">arrow_back</span>
+            </a>
+            <h1 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed tracking-tight">Student Profile</h1>
+        </div>
+        <div class="relative w-64 hidden sm:block">
+            <form action="{% url 'questions' %}" method="GET" class="relative">
+                <input type="text" name="chapter" placeholder="Search Chapters..." class="w-full pl-10 pr-4 py-base rounded-full border border-outline-variant bg-surface-container-low text-on-surface text-body-sm focus:ring-primary focus:border-primary">
+                <span class="material-symbols-outlined absolute left-3 top-2.5 text-secondary text-[18px]">search</span>
+            </form>
+        </div>
+    </div>
+</header>
+
+<main class="pt-24 px-margin-mobile max-w-4xl mx-auto space-y-lg">
+    <!-- Profile Card -->
+    <section class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-lg shadow-sm flex flex-col sm:flex-row gap-lg items-center sm:items-start">
+        <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-primary-container shadow bg-surface-container-high">
+            <img class="w-full h-full object-cover" alt="Student Profile Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQximAye-omcxSQMWnsDOt80Zzmnik-kOQmCCEyxp2BjaFJKAjg0B92GSCCLS8cNle9JFiDkgsxzlOwtWbMaLJt0ykSTQfZV9eXzyyggF4AAg6tYO2jQMqb1_-bzyRc1NBlv8LY5Rgp6c9JreH-aU-cuv6ZFrkOZRdaYtSCt49hU5jKSSpY9Pa7aDraJr_1S9GTjvoLrxDMlODdZG8cSP6nDKgk78YWrWHrEJypgcom01-FlhQm5u3sR4HXAFqior4bgYwHcFxRA"/>
+        </div>
+        <div class="flex-1 text-center sm:text-left space-y-xs">
+            <div class="flex flex-col sm:flex-row sm:items-center gap-xs sm:gap-sm justify-center sm:justify-start">
+                <h2 id="profile-name" class="font-headline-md text-headline-md text-on-surface">Student Name</h2>
+                <span class="inline-flex items-center gap-xs px-sm py-base rounded-full text-label-md bg-tertiary-container text-on-tertiary-container font-semibold uppercase self-center">
+                    Active Streak 🔥 <span id="profile-streak-count">0</span> Days
+                </span>
+            </div>
+            <p id="profile-email" class="text-secondary text-body-md">student@pyqhub.edu</p>
+            <div class="flex flex-wrap gap-xs justify-center sm:justify-start pt-xs">
+                <span id="profile-board-tag" class="px-sm py-base rounded-full text-label-md bg-primary-container text-on-primary-container font-semibold">ICSE Board</span>
+                <span id="profile-class-tag" class="px-sm py-base rounded-full text-label-md bg-secondary-container text-on-secondary-container font-semibold">Class 10th</span>
+                <span class="px-sm py-base rounded-full text-label-md bg-surface-container-high text-on-surface font-semibold">Physics Focus</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Study Stats -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-md">
+        <div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm text-center">
+            <span class="material-symbols-outlined text-primary text-[32px] mb-xs">verified_user</span>
+            <p class="font-headline-sm text-headline-sm text-on-surface font-bold">
+                <span id="profile-solved-count">0</span> / {{ questions_count }}
+            </p>
+            <p class="text-secondary text-body-sm">Questions Solved</p>
+        </div>
+        <div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm text-center">
+            <span class="material-symbols-outlined text-tertiary text-[32px] mb-xs">menu_book</span>
+            <p class="font-headline-sm text-headline-sm text-on-surface font-bold">
+                <span id="profile-chapters-count">0</span> / {{ chapters_count }}
+            </p>
+            <p class="text-secondary text-body-sm">Chapters Completed</p>
+        </div>
+        <div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm text-center">
+            <span class="material-symbols-outlined text-error text-[32px] mb-xs">quiz</span>
+            <p class="font-headline-sm text-headline-sm text-on-surface font-bold">
+                <span id="profile-tests-count">0</span> / {{ papers_count }}
+            </p>
+            <p class="text-secondary text-body-sm">Mock Tests Completed</p>
+        </div>
+    </section>
+
+    <!-- Configuration Settings -->
+    <section class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-lg shadow-sm space-y-md relative">
+        <div class="flex items-center gap-xs">
+            <span class="material-symbols-outlined text-primary">settings</span>
+            <h3 class="font-headline-sm text-headline-sm text-on-surface">Target Syllabus Settings</h3>
+        </div>
+        
+        <!-- Toast message -->
+        <div id="toast-success" class="absolute top-4 right-4 bg-tertiary-container text-on-tertiary-container px-md py-xs rounded-lg shadow border border-outline-variant/30 text-body-sm hidden flex items-center gap-xs">
+            <span class="material-symbols-outlined text-sm font-bold">check_circle</span>
+            Settings saved successfully!
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-md pt-xs">
+            <div>
+                <label class="block text-body-sm font-semibold text-secondary mb-xs">Student Name</label>
+                <input id="setting-name" type="text" class="w-full rounded-lg border-outline-variant bg-surface-container-low text-on-surface focus:ring-primary focus:border-primary px-sm py-base" placeholder="Enter name...">
+            </div>
+            <div>
+                <label class="block text-body-sm font-semibold text-secondary mb-xs">Student Email</label>
+                <input id="setting-email" type="email" class="w-full rounded-lg border-outline-variant bg-surface-container-low text-on-surface focus:ring-primary focus:border-primary px-sm py-base" placeholder="Enter email...">
+            </div>
+            <div>
+                <label class="block text-body-sm font-semibold text-secondary mb-xs">Active Streak (Days)</label>
+                <input id="setting-streak" type="number" min="0" class="w-full rounded-lg border-outline-variant bg-surface-container-low text-on-surface focus:ring-primary focus:border-primary px-sm py-base" placeholder="Enter streak...">
+            </div>
+            <div>
+                <label class="block text-body-sm font-semibold text-secondary mb-xs">Target Board</label>
+                <select id="setting-board" class="w-full rounded-lg border-outline-variant bg-surface-container-low text-on-surface focus:ring-primary focus:border-primary">
+                    <option value="ICSE">ICSE</option>
+                    <option value="CBSE">CBSE</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-body-sm font-semibold text-secondary mb-xs">Target Class</label>
+                <select id="setting-class" class="w-full rounded-lg border-outline-variant bg-surface-container-low text-on-surface focus:ring-primary focus:border-primary">
+                    <option value="10">Class 10</option>
+                    <option value="12">Class 12</option>
+                </select>
+            </div>
+        </div>
+        <div class="pt-sm flex justify-between items-center">
+            <a href="{% url 'logout' %}" class="bg-error hover:bg-error/90 text-white px-lg py-sm rounded-lg shadow-md font-label-md active:scale-95 transition-all flex items-center gap-xs uppercase font-extrabold text-xs">
+                <span class="material-symbols-outlined text-[18px]">logout</span>
+                Logout
+            </a>
+            <button onclick="saveProfileSettings()" class="bg-primary hover:bg-primary-container text-white px-lg py-sm rounded-lg shadow-md font-label-md active:scale-95 transition-all">
+                SAVE CHANGES
+            </button>
+        </div>
+    </section>
+</main>
+
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm pb-xs pt-xs bg-surface-container-lowest dark:bg-on-surface rounded-t-xl shadow-lg border-t border-outline-variant/30">
+    <!-- Dashboard -->
+    <a class="flex flex-col items-center justify-center text-secondary dark:text-outline-variant px-xs py-base hover:bg-surface-variant dark:hover:bg-on-secondary-fixed-variant active:scale-90 transition-transform duration-200" href="{% url 'home' %}">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span class="font-label-md text-label-md">Dashboard</span>
+    </a>
+    <!-- Chapters -->
+    <a class="flex flex-col items-center justify-center text-secondary dark:text-outline-variant px-xs py-base hover:bg-surface-variant dark:hover:bg-on-secondary-fixed-variant active:scale-90 transition-transform duration-200" href="{% url 'chapters' %}">
+        <span class="material-symbols-outlined">list_alt</span>
+        <span class="font-label-md text-label-md">Chapters</span>
+    </a>
+    <!-- Mock Tests -->
+    <a class="flex flex-col items-center justify-center text-secondary dark:text-outline-variant px-xs py-base hover:bg-surface-variant dark:hover:bg-on-secondary-fixed-variant active:scale-90 transition-transform duration-200" href="{% url 'mock_tests' %}">
+        <span class="material-symbols-outlined">quiz</span>
+        <span class="font-label-md text-label-md">Mock Tests</span>
+    </a>
+    <!-- Profile (Active) -->
+    <a class="flex flex-col items-center justify-center bg-primary-container dark:bg-tertiary-container text-on-primary-container dark:text-on-tertiary-container rounded-full px-xs py-base active:scale-90 transition-transform duration-200" href="{% url 'profile' %}">
+        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+        <span class="font-label-md text-label-md">Profile</span>
+    </a>
+</nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Sync Django user details with localStorage
+        const loggedInUser = "{{ request.user.username|escapejs }}";
+        const loggedInEmail = "{{ request.user.email|escapejs }}";
+        if (loggedInUser) {
+            localStorage.setItem('student_name', loggedInUser);
+        }
+        if (loggedInEmail) {
+            localStorage.setItem('student_email', loggedInEmail);
+        }
+
+        const dbBoard = "{{ profile.board|escapejs }}";
+        const dbClass = "{{ profile.class_name|escapejs }}";
+        const dbStreak = "{{ profile.streak }}";
+        if (dbBoard) {
+            localStorage.setItem('student_board', dbBoard);
+        }
+        if (dbClass) {
+            localStorage.setItem('student_class', dbClass);
+        }
+        if (dbStreak) {
+            localStorage.setItem('student_streak', dbStreak);
+        }
+
+        // Load settings from localStorage
+        const name = localStorage.getItem('student_name') || 'Guest Student';
+        const email = localStorage.getItem('student_email') || 'student@pyqhub.edu';
+        const streak = localStorage.getItem('student_streak') || '12';
+        const board = localStorage.getItem('student_board') || 'ICSE';
+        const className = localStorage.getItem('student_class') || '10';
+
+        // Load statistics
+        const solvedQuestions = JSON.parse(localStorage.getItem('solved_questions') || '[]');
+        const solvedChapters = JSON.parse(localStorage.getItem('solved_chapters') || '[]');
+        const practicedPapers = JSON.parse(localStorage.getItem('practiced_papers') || '[]');
+        const practicedMockTests = JSON.parse(localStorage.getItem('practiced_mock_tests') || '[]');
+
+        // Populate elements
+        document.getElementById('profile-name').textContent = name;
+        document.getElementById('profile-email').textContent = email;
+        document.getElementById('profile-streak-count').textContent = streak;
+        
+        document.getElementById('profile-board-tag').textContent = `${board} Board`;
+        document.getElementById('profile-class-tag').textContent = `Class ${className}th`;
+
+        document.getElementById('profile-solved-count').textContent = solvedQuestions.length;
+        document.getElementById('profile-chapters-count').textContent = solvedChapters.length;
+        document.getElementById('profile-tests-count').textContent = practicedMockTests.length;
+
+        // Populate setting inputs
+        document.getElementById('setting-name').value = name;
+        document.getElementById('setting-email').value = email;
+        document.getElementById('setting-streak').value = streak;
+        document.getElementById('setting-board').value = board;
+        document.getElementById('setting-class').value = className;
+    });
+
+    function showToast(message) {
+        const existingToast = document.getElementById('dynamic-toast');
+        if (existingToast) {
+            existingToast.remove();
+        }
+        const toast = document.createElement('div');
+        toast.id = 'dynamic-toast';
+        toast.className = 'fixed bottom-24 left-1/2 transform -translate-x-1/2 bg-on-surface text-surface px-lg py-sm rounded-full shadow-lg font-label-md z-50 transition-opacity duration-300';
+        toast.style.backgroundColor = '#0b1c30';
+        toast.style.color = '#ffffff';
+        toast.style.padding = '8px 24px';
+        toast.style.borderRadius = '9999px';
+        toast.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';
+        toast.style.fontWeight = '600';
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
+
+    function saveProfileSettings() {
+        const name = document.getElementById('setting-name').value;
+        const email = document.getElementById('setting-email').value;
+        const streak = document.getElementById('setting-streak').value;
+        const board = document.getElementById('setting-board').value;
+        const className = document.getElementById('setting-class').value;
+
+        // POST settings to the backend
+        fetch('', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                streak: streak,
+                board: board,
+                class_name: className
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                // Save to localStorage
+                localStorage.setItem('student_name', name);
+                localStorage.setItem('student_email', email);
+                localStorage.setItem('student_streak', streak);
+                localStorage.setItem('student_board', board);
+                localStorage.setItem('student_class', className);
+
+                // Update elements
+                document.getElementById('profile-name').textContent = name;
+                document.getElementById('profile-email').textContent = email;
+                document.getElementById('profile-streak-count').textContent = streak;
+                document.getElementById('profile-board-tag').textContent = `${board} Board`;
+                document.getElementById('profile-class-tag').textContent = `Class ${className}th`;
+
+                showToast('Settings saved successfully!');
+            } else {
+                showToast('Error saving settings: ' + data.message);
+            }
+        })
+        .catch(error => {
+            showToast('Error saving settings.');
+            console.error('Error:', error);
+        });
+    }
+</script>

@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>PYQHub - Chapter Questions</title>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#d3e4fe",
+                    "outline-variant": "#c3c6d7",
+                    "primary-fixed": "#dbe1ff",
+                    "on-surface": "#0b1c30",
+                    "on-secondary-fixed": "#141d21",
+                    "surface-container-highest": "#d3e4fe",
+                    "secondary-fixed": "#dbe4ea",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface-variant": "#434655",
+                    "on-error-container": "#93000a",
+                    "on-background": "#0b1c30",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#eff4ff",
+                    "on-tertiary-container": "#bdffdb",
+                    "on-secondary-container": "#5d666b",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#dbe4ea",
+                    "on-primary-fixed": "#00174b",
+                    "surface-dim": "#cbdbf5",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#dce9ff",
+                    "secondary-fixed-dim": "#bfc8ce",
+                    "inverse-surface": "#213145",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "background": "#f8f9ff",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "on-primary-container": "#eeefff",
+                    "surface-tint": "#0053db",
+                    "secondary": "#576065",
+                    "primary-container": "#2563eb",
+                    "primary": "#004ac6",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "on-secondary-fixed-variant": "#3f484d",
+                    "tertiary-fixed": "#6ffbbe",
+                    "inverse-primary": "#b4c5ff",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "surface-bright": "#f8f9ff",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#007d55",
+                    "error-container": "#ffdad6",
+                    "surface": "#f8f9ff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "outline": "#737686",
+                    "surface-container": "#e5eeff",
+                    "on-tertiary-fixed": "#002113",
+                    "tertiary": "#006242"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "margin-mobile": "20px",
+                    "xl": "32px",
+                    "lg": "24px",
+                    "base": "4px",
+                    "sm": "12px",
+                    "xs": "8px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "body-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+        .slide-over {
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-dim flat border-b border-outline-variant/30">
+    <div class="flex justify-between items-center px-margin-mobile py-sm w-full max-w-7xl mx-auto">
+        <div class="flex items-center gap-sm">
+            <a href="javascript:history.back()" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors active:scale-95">
+                <span class="material-symbols-outlined text-primary dark:text-primary-fixed">arrow_back</span>
+            </a>
+            <h1 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed tracking-tight">Chapter PYQs</h1>
+        </div>
+        <div class="relative w-64 hidden sm:block">
+            <form action="{% url 'questions' %}" method="GET" class="relative">
+                <input type="text" name="chapter" placeholder="Enter chapter name..." value="{{ request.GET.chapter|default:'' }}" class="w-full pl-10 pr-4 py-base rounded-full border border-outline-variant bg-surface-container-low text-on-surface text-body-sm focus:ring-primary focus:border-primary">
+                <span class="material-symbols-outlined absolute left-3 top-2.5 text-secondary text-[18px]">search</span>
+            </form>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content Canvas -->
+<main class="pt-24 px-margin-mobile max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-lg items-start">
+        <!-- Left Side: Questions List (span 2) -->
+        <section class="lg:col-span-2 space-y-md mb-lg">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-lg gap-sm">
+                <div>
+                    <h2 class="font-headline-md text-headline-md text-on-surface mb-xs">
+                        {% if request.GET.chapter %}
+                            Questions for: <span class="text-primary font-bold">{{ request.GET.chapter }}</span>
+                        {% else %}
+                            Select a Chapter to Browse Questions
+                        {% endif %}
+                    </h2>
+                    <p class="text-body-sm text-secondary">Analyze previous year exam questions, filtered and structured below.</p>
+                </div>
+                
+                <form method="GET" class="flex gap-xs w-full md:w-auto sm:hidden">
+                    <input type="text" name="chapter" placeholder="Enter chapter" value="{{ request.GET.chapter|default:'' }}" class="flex-1 rounded-lg border-outline-variant bg-surface-container-lowest text-on-surface text-body-sm focus:ring-primary focus:border-primary px-sm py-base">
+                    <button type="submit" class="bg-primary text-white font-label-md px-md py-base rounded-lg shadow hover:bg-primary-container active:scale-95 transition-all">Search</button>
+                </form>
+            </div>
+
+            <div class="space-y-md">
+                {% for q in questions %}
+                <div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex flex-wrap gap-xs items-center justify-between mb-sm">
+                        <div class="flex flex-wrap gap-xs">
+                            <span class="px-sm py-base rounded-full text-label-md bg-primary-container text-on-primary-container font-semibold uppercase">
+                                {{ q.board|default:"ICSE" }}
+                            </span>
+                            <span class="px-sm py-base rounded-full text-label-md bg-secondary-container text-on-secondary-container">
+                                Class {{ q.class_name|default:"10" }}
+                            </span>
+                            <span class="px-sm py-base rounded-full text-label-md bg-surface-container-high text-on-surface font-semibold">
+                                {{ q.subject|default:"Physics" }}
+                            </span>
+                            <span class="px-sm py-base rounded-full text-label-md bg-tertiary-fixed-dim text-on-tertiary-fixed font-semibold">
+                                Year {{ q.year }}
+                            </span>
+                        </div>
+                        {% if q.marks %}
+                        <span class="px-sm py-base rounded-full text-label-md bg-error-container text-on-error-container font-bold">
+                            {{ q.marks }} Marks
+                        </span>
+                        {% endif %}
+                    </div>
+
+                    <div class="text-body-lg text-on-surface font-semibold mb-lg leading-relaxed whitespace-pre-line">
+                        {{ q.question_text }}
+                    </div>
+
+                    {% if q.question_image %}
+                    <div class="mb-lg rounded-xl border border-outline-variant/40 bg-surface-container-low overflow-hidden">
+                        <div class="flex items-center gap-xs px-md py-sm border-b border-outline-variant/30 bg-surface-container-high/50">
+                            <span class="material-symbols-outlined text-primary text-[18px]">image</span>
+                            <span class="font-label-md text-label-md text-secondary uppercase tracking-wide">Question from paper</span>
+                        </div>
+                        <div class="p-md flex justify-center bg-white">
+                            <img
+                                src="{{ q.question_image.url }}"
+                                alt="Cropped question image"
+                                class="max-w-full h-auto rounded-lg shadow-sm cursor-zoom-in hover:opacity-95 transition-opacity"
+                                onclick="openImageModal(this.src)"
+                                loading="lazy"
+                            />
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <div class="flex justify-end gap-sm border-t border-outline-variant/30 pt-md">
+                        <button onclick="openExplainer({{ q.id }}, `{{ q.question_text|escapejs }}`, `{{ q.chapter|escapejs }}`)" class="flex items-center gap-xs bg-primary hover:bg-primary-container text-white font-label-md px-lg py-sm rounded-full shadow hover:shadow-md active:scale-95 transition-all">
+                            <span class="material-symbols-outlined text-[20px]">spa</span>
+                            Feeling depressed? Talk to us, let's solve together
+                        </button>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="py-xl text-center bg-surface-container-lowest border border-outline-variant rounded-xl">
+                    <span class="material-symbols-outlined text-[48px] text-secondary mb-sm">find_in_page</span>
+                    <p class="text-body-md text-secondary">No questions found. Try searching for a different chapter.</p>
+                    <div class="mt-lg max-w-sm mx-auto">
+                        <form method="GET" class="flex gap-xs">
+                            <input type="text" name="chapter" placeholder="Try 'Force' or 'Light'..." class="flex-1 rounded-lg border-outline-variant bg-surface-container-low text-on-surface text-body-sm focus:ring-primary focus:border-primary px-sm py-base">
+                            <button type="submit" class="bg-primary text-white font-label-md px-md py-base rounded-lg shadow hover:bg-primary-container active:scale-95 transition-all">Search</button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Right Side: AI Mentor (span 1) -->
+        <aside class="hidden lg:flex lg:col-span-1 bg-surface-container-lowest border border-outline-variant rounded-2xl shadow-lg p-md sticky top-28 flex flex-col h-[650px] z-10">
+            <!-- Mentor Header -->
+            <div class="p-sm border-b border-outline-variant/30 flex items-center gap-xs pb-md bg-surface-container-low/50 rounded-t-xl shrink-0">
+                <span class="material-symbols-outlined text-primary text-[28px] animate-pulse">spa</span>
+                <div>
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold text-sm">AI Study Mentor</h3>
+                    <p class="text-[10px] text-secondary">Always here to teach, guide, & comfort you</p>
+                </div>
+            </div>
+            
+            <!-- Chat history area -->
+            <div id="aside-chat-messages" class="flex-1 overflow-y-auto p-sm space-y-md my-sm min-h-0 bg-background/50 rounded-xl">
+                <div class="p-sm bg-primary-container/10 border border-primary/20 rounded-xl">
+                    <p class="text-body-sm text-secondary font-semibold">Hello! I am your AI study mentor. If you are stuck on any question, click the mentor button next to it, or type your question below. I can also help if you are feeling stressed or anxious!</p>
+                </div>
+                <div id="aside-chat-feed" class="space-y-sm"></div>
+                <!-- Loading indicator -->
+                <div id="aside-loading" class="hidden flex items-center gap-xs text-secondary p-sm">
+                    <span class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce"></span>
+                    <span class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce [animation-delay:0.2s]"></span>
+                    <span class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce [animation-delay:0.4s]"></span>
+                </div>
+            </div>
+
+            <!-- Input area -->
+            <form id="aside-chat-form" onsubmit="handleAsideSend(event)" class="flex gap-xs border-t border-outline-variant/30 pt-sm shrink-0">
+                <input type="text" id="aside-chat-input" placeholder="Ask your mentor anything..." class="flex-1 rounded-full border border-outline-variant bg-surface-container-lowest text-on-surface text-body-sm focus:ring-primary focus:border-primary px-md py-base" />
+                <button type="submit" class="w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white hover:bg-primary-container shadow active:scale-95 transition-all">
+                    <span class="material-symbols-outlined text-[16px]">send</span>
+                </button>
+            </form>
+        </aside>
+    </div>
+</main>
+
+<!-- Full-screen image viewer -->
+<div id="image-modal-backdrop" class="fixed inset-0 z-[60] bg-black/80 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-md" onclick="closeImageModal()">
+    <button type="button" onclick="closeImageModal()" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors">
+        <span class="material-symbols-outlined">close</span>
+    </button>
+    <img id="image-modal-img" src="" alt="Question crop enlarged" class="max-w-full max-h-[90vh] rounded-xl shadow-2xl object-contain" onclick="event.stopPropagation()" />
+</div>
+
+<!-- Slide-Over Drawer for AI Explainer (Chatbot) -->
+<div id="drawer-backdrop" class="fixed inset-0 z-50 bg-black/40 hidden transition-opacity duration-300 opacity-0" onclick="closeExplainer()"></div>
+<div id="explainer-drawer" class="fixed right-0 top-0 bottom-0 z-50 w-full max-w-2xl bg-surface shadow-2xl border-l border-outline-variant/40 slide-over translate-x-full flex flex-col h-full">
+    <!-- Header -->
+    <div class="p-lg border-b border-outline-variant/30 flex justify-between items-center bg-surface-container-low shrink-0">
+        <div class="flex items-center gap-sm">
+            <span class="material-symbols-outlined text-primary text-[28px]">spa</span>
+            <div>
+                <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Student Support & Learning Companion</h2>
+                <p class="text-xs text-secondary">Therapist, Teacher, and Counselor</p>
+            </div>
+        </div>
+        <button onclick="closeExplainer()" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-variant transition-colors">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+    </div>
+
+    <!-- Chat messages area -->
+    <div id="chat-messages" class="flex-1 overflow-y-auto p-lg space-y-md bg-background">
+        <!-- Initial welcome context -->
+        <div class="bg-primary-container/10 p-md rounded-xl border border-primary/20">
+            <h4 class="font-label-md text-label-md text-primary uppercase tracking-wide mb-xs font-semibold">Context Question</h4>
+            <p id="drawer-question" class="text-body-md text-on-surface font-semibold leading-relaxed whitespace-pre-line"></p>
+        </div>
+
+        <!-- Explainer solution stream / chat feed starts -->
+        <div id="chat-feed" class="space-y-md">
+            <!-- Loading indicator -->
+            <div id="drawer-loading" class="hidden space-y-md p-md bg-surface-container-low border border-outline-variant/20 rounded-2xl max-w-[85%]">
+                <div class="flex items-center gap-sm text-secondary">
+                    <svg class="animate-spin h-5 w-5 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span class="text-sm font-semibold">Gemini therapist-teacher is preparing your explanation...</span>
+                </div>
+            </div>
+
+            <!-- Error panel -->
+            <div id="drawer-error" class="hidden p-md bg-error-container/20 border border-error/30 text-error rounded-xl flex items-start gap-xs">
+                <span class="material-symbols-outlined text-[20px]">error</span>
+                <p class="text-body-sm" id="drawer-error-text"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Persistent input block at bottom -->
+    <div class="p-md border-t border-outline-variant/30 bg-surface-container-low shrink-0">
+        <form id="chat-form" onsubmit="handleSend(event)" class="flex gap-sm">
+            <input type="text" id="chat-input" placeholder="Ask a question, ask to clarify steps, or share if you're feeling stressed..." class="flex-1 rounded-full border-outline-variant bg-surface-container-lowest text-on-surface text-body-sm focus:ring-primary focus:border-primary px-lg py-sm" disabled />
+            <button type="submit" id="chat-send-btn" class="w-10 h-10 flex items-center justify-center rounded-full bg-primary hover:bg-primary-container text-white disabled:bg-outline-variant active:scale-95 transition-all shadow shrink-0" disabled>
+                <span class="material-symbols-outlined text-[20px]">send</span>
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm pb-xs pt-xs bg-surface-container-lowest dark:bg-on-surface rounded-t-xl shadow-lg border-t border-outline-variant/30">
+    <!-- Dashboard -->
+    <a class="flex flex-col items-center justify-center text-secondary dark:text-outline-variant px-xs py-base hover:bg-surface-variant dark:hover:bg-on-secondary-fixed-variant active:scale-90 transition-transform duration-200" href="{% url 'home' %}">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span class="font-label-md text-label-md">Dashboard</span>
+    </a>
+    <!-- Chapters (Active) -->
+    <a class="flex flex-col items-center justify-center bg-primary-container dark:bg-tertiary-container text-on-primary-container dark:text-on-tertiary-container rounded-full px-xs py-base active:scale-90 transition-transform duration-200" href="{% url 'chapters' %}">
+        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">list_alt</span>
+        <span class="font-label-md text-label-md">Chapters</span>
+    </a>
+    <!-- Mock Tests -->
+    <a class="flex flex-col items-center justify-center text-secondary dark:text-outline-variant px-xs py-base hover:bg-surface-variant dark:hover:bg-on-secondary-fixed-variant active:scale-90 transition-transform duration-200" href="{% url 'mock_tests' %}">
+        <span class="material-symbols-outlined">quiz</span>
+        <span class="font-label-md text-label-md">Mock Tests</span>
+    </a>
+    <!-- Profile -->
+    <a class="flex flex-col items-center justify-center text-secondary dark:text-outline-variant px-xs py-base hover:bg-surface-variant dark:hover:bg-on-secondary-fixed-variant active:scale-90 transition-transform duration-200" href="{% url 'profile' %}">
+        <span class="material-symbols-outlined">person</span>
+        <span class="font-label-md text-label-md">Profile</span>
+    </a>
+</nav>
+
+<script>
+    function openImageModal(src) {
+        const backdrop = document.getElementById('image-modal-backdrop');
+        document.getElementById('image-modal-img').src = src;
+        backdrop.classList.remove('hidden');
+        setTimeout(() => backdrop.classList.remove('opacity-0'), 10);
+    }
+
+    function closeImageModal() {
+        const backdrop = document.getElementById('image-modal-backdrop');
+        backdrop.classList.add('opacity-0');
+        setTimeout(() => {
+            backdrop.classList.add('hidden');
+            document.getElementById('image-modal-img').src = '';
+        }, 300);
+    }
+
+    let chatHistory = [];
+    let currentQuestionText = '';
+
+    function openExplainer(id, questionText, chapterName) {
+        currentQuestionText = questionText;
+        chatHistory = [];
+        
+        // Record progress in localStorage
+        try {
+            let solved = JSON.parse(localStorage.getItem('solved_questions') || '[]');
+            if (!solved.includes(id)) {
+                solved.push(id);
+                localStorage.setItem('solved_questions', JSON.stringify(solved));
+            }
+            if (chapterName) {
+                let solvedChapters = JSON.parse(localStorage.getItem('solved_chapters') || '[]');
+                if (!solvedChapters.includes(chapterName)) {
+                    solvedChapters.push(chapterName);
+                    localStorage.setItem('solved_chapters', JSON.stringify(solvedChapters));
+                }
+            }
+        } catch (e) {
+            console.error('Error updating progress in localStorage:', e);
+        }
+
+        const isDesktop = window.innerWidth >= 1024;
+        if (isDesktop) {
+            // Load into the persistent aside panel
+            const feed = document.getElementById('aside-chat-feed');
+            feed.innerHTML = `
+                <div class="bg-primary-container/10 p-sm rounded-xl border border-primary/20">
+                    <h4 class="text-[10px] text-primary uppercase font-bold tracking-wide mb-xs">Context Question</h4>
+                    <p class="text-body-sm text-on-surface font-semibold leading-relaxed whitespace-pre-line">${questionText}</p>
+                </div>
+            `;
+            
+            // Show loading indicator
+            const loader = document.getElementById('aside-loading');
+            loader.classList.remove('hidden');
+            
+            // Disable aside input
+            document.getElementById('aside-chat-input').disabled = true;
+
+            // Fetch Explanation from Django
+            fetch(`/explain/${id}/`)
+                .then(response => {
+                    if (!response.ok) throw new Error('Failed to generate initial explanation.');
+                    return response.json();
+                })
+                .then(data => {
+                    loader.classList.add('hidden');
+                    document.getElementById('aside-chat-input').disabled = false;
+                    
+                    let formatted = formatMarkdown(data.explanation);
+                    appendAsideBubble('model', formatted);
+                    chatHistory.push({role: 'model', text: data.explanation});
+                    
+                    document.getElementById('aside-chat-input').focus();
+                })
+                .catch(error => {
+                    loader.classList.add('hidden');
+                    document.getElementById('aside-chat-input').disabled = false;
+                    appendAsideBubble('model', `<span class="text-error font-semibold">${error.message}</span>`);
+                });
+        } else {
+            // Fallback to Mobile Drawer
+            document.getElementById('drawer-question').innerText = questionText;
+            const feed = document.getElementById('chat-feed');
+            feed.innerHTML = ''; // Clear feed
+            
+            // Setup initial loading
+            const loader = document.getElementById('drawer-loading').cloneNode(true);
+            loader.id = 'initial-loader';
+            loader.classList.remove('hidden');
+            feed.appendChild(loader);
+            
+            // Disable inputs
+            document.getElementById('chat-input').disabled = true;
+            document.getElementById('chat-send-btn').disabled = true;
+            document.getElementById('chat-input').value = '';
+
+            // Show Drawer
+            const backdrop = document.getElementById('drawer-backdrop');
+            const drawer = document.getElementById('explainer-drawer');
+            backdrop.classList.remove('hidden');
+            setTimeout(() => {
+                backdrop.classList.remove('opacity-0');
+                drawer.classList.remove('translate-x-full');
+            }, 10);
+
+            // Fetch Explanation from Django
+            fetch(`/explain/${id}/`)
+                .then(response => {
+                    if (!response.ok) throw new Error('Failed to generate initial explanation.');
+                    return response.json();
+                })
+                .then(data => {
+                    // Remove loader
+                    const initialLoader = document.getElementById('initial-loader');
+                    if (initialLoader) initialLoader.remove();
+                    
+                    // Format explanation
+                    let formatted = formatMarkdown(data.explanation);
+                    
+                    // Append bubble
+                    appendBubble('model', formatted);
+                    chatHistory.push({role: 'model', text: data.explanation});
+                    
+                    // Enable inputs
+                    document.getElementById('chat-input').disabled = false;
+                    document.getElementById('chat-send-btn').disabled = false;
+                    document.getElementById('chat-input').focus();
+                })
+                .catch(error => {
+                    const initialLoader = document.getElementById('initial-loader');
+                    if (initialLoader) initialLoader.remove();
+                    
+                    const errPanel = document.getElementById('drawer-error').cloneNode(true);
+                    errPanel.classList.remove('hidden');
+                    errPanel.querySelector('p').innerText = error.message;
+                    feed.appendChild(errPanel);
+                });
+        }
+    }
+
+    function formatMarkdown(text) {
+        return text
+            .replace(/\*\*(.*?)\*\*/g, '<strong class="text-primary font-bold">$1</strong>')
+            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+            .replace(/\n/g, '<br>');
+    }
+
+    function appendBubble(role, htmlContent) {
+        const feed = document.getElementById('chat-feed');
+        const container = document.createElement('div');
+        
+        if (role === 'user') {
+            container.className = 'flex justify-end w-full';
+            container.innerHTML = `
+                <div class="bg-primary text-white px-md py-sm rounded-2xl rounded-tr-none max-w-[85%] shadow-sm">
+                    <p class="text-body-sm leading-relaxed">${htmlContent}</p>
+                </div>
+            `;
+        } else {
+            container.className = 'flex justify-start w-full';
+            container.innerHTML = `
+                <div class="bg-surface-container-lowest border border-outline-variant/30 text-on-surface px-md py-sm rounded-2xl rounded-tl-none max-w-[85%] shadow-sm space-y-sm">
+                    <p class="text-body-sm leading-relaxed">${htmlContent}</p>
+                </div>
+            `;
+        }
+        
+        feed.appendChild(container);
+        scrollToBottom();
+    }
+
+    function appendAsideBubble(role, htmlContent) {
+        const feed = document.getElementById('aside-chat-feed');
+        const container = document.createElement('div');
+        
+        if (role === 'user') {
+            container.className = 'flex justify-end w-full';
+            container.innerHTML = `
+                <div class="bg-primary text-white px-sm py-xs rounded-xl rounded-tr-none max-w-[85%] shadow-sm text-body-sm">
+                    <p class="leading-relaxed">${htmlContent}</p>
+                </div>
+            `;
+        } else {
+            container.className = 'flex justify-start w-full';
+            container.innerHTML = `
+                <div class="bg-surface-container-lowest border border-outline-variant/30 text-on-surface px-sm py-xs rounded-xl rounded-tl-none max-w-[85%] shadow-sm text-body-sm space-y-xs">
+                    <p class="leading-relaxed">${htmlContent}</p>
+                </div>
+            `;
+        }
+        
+        feed.appendChild(container);
+        const messagesArea = document.getElementById('aside-chat-messages');
+        messagesArea.scrollTop = messagesArea.scrollHeight;
+    }
+
+    function scrollToBottom() {
+        const messagesArea = document.getElementById('chat-messages');
+        messagesArea.scrollTop = messagesArea.scrollHeight;
+    }
+
+    function handleSend(event) {
+        event.preventDefault();
+        const input = document.getElementById('chat-input');
+        const msg = input.value.trim();
+        if (!msg) return;
+        
+        input.value = '';
+        appendBubble('user', escapeHTML(msg));
+        chatHistory.push({role: 'user', text: msg});
+        
+        // Show typing indicator
+        const feed = document.getElementById('chat-feed');
+        const typingLoader = document.createElement('div');
+        typingLoader.id = 'typing-loader';
+        typingLoader.className = 'flex justify-start w-full';
+        typingLoader.innerHTML = `
+            <div class="bg-surface-container-lowest border border-outline-variant/30 text-secondary px-md py-sm rounded-2xl rounded-tl-none max-w-[85%] shadow-sm flex items-center gap-xs">
+                <span class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce"></span>
+                <span class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce [animation-delay:0.2s]"></span>
+                <span class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce [animation-delay:0.4s]"></span>
+            </div>
+        `;
+        feed.appendChild(typingLoader);
+        scrollToBottom();
+        
+        // Disable inputs
+        input.disabled = true;
+        document.getElementById('chat-send-btn').disabled = true;
+        
+        fetch('/chat-support/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify({
+                question_text: currentQuestionText,
+                history: chatHistory.slice(0, -1),
+                message: msg
+            })
+        })
+        .then(res => {
+            if (!res.ok) throw new Error('Failed to fetch tutor response.');
+            return res.json();
+        })
+        .then(data => {
+            const tl = document.getElementById('typing-loader');
+            if (tl) tl.remove();
+            
+            const formatted = formatMarkdown(data.response);
+            appendBubble('model', formatted);
+            chatHistory.push({role: 'model', text: data.response});
+            
+            input.disabled = false;
+            document.getElementById('chat-send-btn').disabled = false;
+            input.focus();
+        })
+        .catch(err => {
+            const tl = document.getElementById('typing-loader');
+            if (tl) tl.remove();
+            
+            appendBubble('model', `<span class="text-error font-semibold">Error: ${err.message}</span>`);
+            
+            input.disabled = false;
+            document.getElementById('chat-send-btn').disabled = false;
+        });
+    }
+
+    function handleAsideSend(event) {
+        event.preventDefault();
+        const input = document.getElementById('aside-chat-input');
+        const msg = input.value.trim();
+        if (!msg) return;
+        
+        input.value = '';
+        appendAsideBubble('user', escapeHTML(msg));
+        chatHistory.push({role: 'user', text: msg});
+        
+        const loader = document.getElementById('aside-loading');
+        loader.classList.remove('hidden');
+        input.disabled = true;
+        
+        fetch('/chat-support/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify({
+                question_text: currentQuestionText,
+                history: chatHistory.slice(0, -1),
+                message: msg
+            })
+        })
+        .then(res => {
+            if (!res.ok) throw new Error('Failed to fetch tutor response.');
+            return res.json();
+        })
+        .then(data => {
+            loader.classList.add('hidden');
+            input.disabled = false;
+            
+            const formatted = formatMarkdown(data.response);
+            appendAsideBubble('model', formatted);
+            chatHistory.push({role: 'model', text: data.response});
+            
+            input.focus();
+        })
+        .catch(err => {
+            loader.classList.add('hidden');
+            input.disabled = false;
+            appendAsideBubble('model', `<span class="text-error font-semibold">Error: ${err.message}</span>`);
+        });
+    }
+
+    function escapeHTML(str) {
+        return str
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    }
+
+    function closeExplainer() {
+        const backdrop = document.getElementById('drawer-backdrop');
+        const drawer = document.getElementById('explainer-drawer');
+        backdrop.classList.add('opacity-0');
+        drawer.classList.add('translate-x-full');
+        setTimeout(() => {
+            backdrop.classList.add('hidden');
+        }, 300);
+    }
+</script>
+</body>
+</html>

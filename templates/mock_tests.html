@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Mock Tests - PYQHub</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#d3e4fe",
+                    "outline-variant": "#c3c6d7",
+                    "primary-fixed": "#dbe1ff",
+                    "on-surface": "#0b1c30",
+                    "on-secondary-fixed": "#141d21",
+                    "surface-container-highest": "#d3e4fe",
+                    "secondary-fixed": "#dbe4ea",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface-variant": "#434655",
+                    "on-error-container": "#93000a",
+                    "on-background": "#0b1c30",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#eff4ff",
+                    "on-tertiary-container": "#bdffdb",
+                    "on-secondary-container": "#5d666b",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#dbe4ea",
+                    "on-primary-fixed": "#00174b",
+                    "surface-dim": "#cbdbf5",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#dce9ff",
+                    "secondary-fixed-dim": "#bfc8ce",
+                    "inverse-surface": "#213145",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "background": "#f8f9ff",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "on-primary-container": "#eeefff",
+                    "surface-tint": "#0053db",
+                    "secondary": "#576065",
+                    "primary-container": "#2563eb",
+                    "primary": "#004ac6",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "on-secondary-fixed-variant": "#3f484d",
+                    "tertiary-fixed": "#6ffbbe",
+                    "inverse-primary": "#b4c5ff",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "surface-bright": "#f8f9ff",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#007d55",
+                    "error-container": "#ffdad6",
+                    "surface": "#f8f9ff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "outline": "#737686",
+                    "surface-container": "#e5eeff",
+                    "on-tertiary-fixed": "#002113",
+                    "tertiary": "#006242"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "margin-mobile": "20px",
+                    "xl": "32px",
+                    "lg": "24px",
+                    "base": "4px",
+                    "sm": "12px",
+                    "xs": "8px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "body-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+        body {
+            background-color: #f8f9ff;
+            -webkit-tap-highlight-color: transparent;
+            min-height: max(884px, 100dvh);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="font-body-md text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-dim border-b border-outline-variant/30">
+    <div class="flex justify-between items-center px-margin-mobile py-sm w-full max-w-7xl mx-auto">
+        <div class="flex items-center gap-sm">
+            <a href="{% url 'home' %}" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors active:scale-95">
+                <span class="material-symbols-outlined text-primary dark:text-primary-fixed">arrow_back</span>
+            </a>
+            <h1 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed tracking-tight">PYQHub</h1>
+        </div>
+        <div class="relative w-64 hidden sm:block">
+            <form action="{% url 'questions' %}" method="GET" class="relative">
+                <input type="text" name="chapter" placeholder="Search Chapters..." class="w-full pl-10 pr-4 py-base rounded-full border border-outline-variant bg-surface-container-low text-on-surface text-body-sm focus:ring-primary focus:border-primary">
+                <span class="material-symbols-outlined absolute left-3 top-2.5 text-secondary text-[18px]">search</span>
+            </form>
+        </div>
+    </div>
+</header>
+
+<main class="pt-24 px-margin-mobile max-w-7xl mx-auto">
+    <!-- Hero Section / Title -->
+    <div class="mb-lg">
+        <h2 class="font-headline-md text-headline-md text-on-surface">Mock Tests</h2>
+        <p class="text-secondary font-body-sm mt-xs">Test your knowledge with curated practice sets.</p>
+    </div>
+
+    <!-- Category Filter (Pill-style Tabs) -->
+    <div class="flex gap-xs overflow-x-auto no-scrollbar mb-lg -mx-margin-mobile px-margin-mobile">
+        <button data-filter-subject="all" class="shrink-0 px-lg py-sm rounded-full bg-primary text-on-primary font-label-md transition-colors active:scale-95">All Tests</button>
+        {% for subject in subjects %}
+        <button data-filter-subject="{{ subject|lower }}" class="shrink-0 px-lg py-sm rounded-full bg-surface-container-low text-secondary font-label-md hover:bg-surface-variant transition-colors active:scale-95">{{ subject }}</button>
+        {% endfor %}
+    </div>
+
+    <!-- Tests Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
+        {% for test in tests %}
+        <!-- Test Card -->
+        <div class="test-card bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col gap-sm shadow-sm hover:shadow-md transition-all relative overflow-hidden group" data-subject="{{ test.subject|lower }}">
+            
+            {% if forloop.counter0|divisibleby:3 %}
+                <div class="absolute top-0 right-0 w-24 h-24 bg-primary-fixed-dim/20 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
+            {% elif forloop.counter0|divisibleby:2 %}
+                <div class="absolute top-0 right-0 w-24 h-24 bg-tertiary-fixed-dim/20 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
+            {% else %}
+                <div class="absolute top-0 right-0 w-24 h-24 bg-secondary-fixed/30 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
+            {% endif %}
+
+            <div class="flex justify-between items-start z-10">
+                <div class="w-12 h-12 bg-primary-fixed-dim rounded-lg flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">
+                        {% if test.subject|lower == 'physics' %}science{% elif test.subject|lower == 'maths' %}functions{% else %}assignment{% endif %}
+                    </span>
+                </div>
+                {% if test.question_count > 15 %}
+                <span class="px-xs py-1 rounded bg-tertiary-container text-on-tertiary-container text-[10px] font-bold uppercase tracking-wider">Popular</span>
+                {% endif %}
+            </div>
+            <div class="z-10">
+                <span class="text-[10px] font-bold uppercase text-secondary">{{ test.board }} • Class {{ test.class_name }}</span>
+                <h3 class="font-headline-sm text-on-surface truncate">{{ test.chapter }}</h3>
+                <p class="text-secondary font-body-sm mt-base line-clamp-2">Practice set with real exam questions on {{ test.chapter }}.</p>
+            </div>
+            <div class="flex items-center gap-md py-xs border-y border-outline-variant/30 z-10">
+                <div class="flex items-center gap-xs">
+                    <span class="material-symbols-outlined text-secondary text-lg">schedule</span>
+                    <span class="text-body-sm text-secondary">{{ test.duration }} mins</span>
+                </div>
+                <div class="flex items-center gap-xs">
+                    <span class="material-symbols-outlined text-secondary text-lg">assignment</span>
+                    <span class="text-body-sm text-secondary">{{ test.question_count }} Qs</span>
+                </div>
+            </div>
+            <a href="{% url 'start_mock_test' %}?chapter={{ test.chapter|urlencode }}" onclick="trackMockTest('{{ test.id }}')" class="mt-auto w-full py-sm bg-primary hover:bg-primary-container text-on-primary rounded-full font-label-md active:scale-95 transition-all flex items-center justify-center gap-xs text-center z-10">
+                Start Test
+                <span class="material-symbols-outlined text-sm">play_arrow</span>
+            </a>
+        </div>
+        {% empty %}
+        <div class="col-span-full py-xl text-center bg-surface-container-lowest border border-outline-variant rounded-xl">
+            <span class="material-symbols-outlined text-[48px] text-secondary mb-sm">find_in_page</span>
+            <p class="text-body-md text-secondary">No questions found to build mock tests.</p>
+            <p class="text-body-sm text-secondary/70 mt-xs">Upload questions via past papers first.</p>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm pb-xs pt-xs bg-surface-container-lowest dark:bg-on-surface rounded-t-xl shadow-lg border-t border-outline-variant/30">
+    <!-- Dashboard -->
+    <a class="flex flex-col items-center justify-center text-secondary dark:text-outline-variant px-xs py-base hover:bg-surface-variant dark:hover:bg-on-secondary-fixed-variant active:scale-90 transition-transform duration-200" href="{% url 'home' %}">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span class="font-label-md text-label-md">Dashboard</span>
+    </a>
+    <!-- Chapters -->
+    <a class="flex flex-col items-center justify-center text-secondary dark:text-outline-variant px-xs py-base hover:bg-surface-variant dark:hover:bg-on-secondary-fixed-variant active:scale-90 transition-transform duration-200" href="{% url 'chapters' %}">
+        <span class="material-symbols-outlined">list_alt</span>
+        <span class="font-label-md text-label-md">Chapters</span>
+    </a>
+    <!-- Mock Tests (Active) -->
+    <a class="flex flex-col items-center justify-center bg-primary-container dark:bg-tertiary-container text-on-primary-container dark:text-on-tertiary-container rounded-full px-xs py-base active:scale-90 transition-transform duration-200" href="{% url 'mock_tests' %}">
+        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">quiz</span>
+        <span class="font-label-md text-label-md">Mock Tests</span>
+    </a>
+    <!-- Profile -->
+    <a class="flex flex-col items-center justify-center text-secondary dark:text-outline-variant px-xs py-base hover:bg-surface-variant dark:hover:bg-on-secondary-fixed-variant active:scale-90 transition-transform duration-200" href="{% url 'profile' %}">
+        <span class="material-symbols-outlined">person</span>
+        <span class="font-label-md text-label-md">Profile</span>
+    </a>
+</nav>
+
+<script>
+    // Live filter logic
+    const subjectButtons = document.querySelectorAll('[data-filter-subject]');
+    const testCards = document.querySelectorAll('.test-card');
+
+    subjectButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            subjectButtons.forEach(b => {
+                b.classList.remove('bg-primary', 'text-on-primary');
+                b.classList.add('bg-surface-container-low', 'text-secondary');
+            });
+            btn.classList.add('bg-primary', 'text-on-primary');
+            btn.classList.remove('bg-surface-container-low', 'text-secondary');
+
+            const filterSubject = btn.getAttribute('data-filter-subject').toLowerCase();
+            testCards.forEach(card => {
+                const cardSubject = card.getAttribute('data-subject').toLowerCase();
+                if (filterSubject === 'all' || cardSubject === filterSubject) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // Track completed mock tests in localStorage
+    function trackMockTest(id) {
+        let practiced = JSON.parse(localStorage.getItem('practiced_papers') || '[]');
+        // We also increment a separate mock tests count
+        let mockTests = JSON.parse(localStorage.getItem('practiced_mock_tests') || '[]');
+        if (!mockTests.includes(id)) {
+            mockTests.push(id);
+            localStorage.setItem('practiced_mock_tests', JSON.stringify(mockTests));
+        }
+    }
+</script>
+</body>
+</html>

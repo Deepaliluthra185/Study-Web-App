@@ -1,0 +1,12 @@
+# Django
+*.pyc
+__pycache__/
+db.sqlite3
+media/
+.venv/
+env/
+venv/
+*.log
+.DS_Store
+.idea/
+.vscode/

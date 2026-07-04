@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Mock Test: {{ chapter }} - PYQHub</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+              "surface-variant": "#d3e4fe",
+              "outline-variant": "#c3c6d7",
+              "primary-fixed": "#dbe1ff",
+              "on-surface": "#0b1c30",
+              "on-secondary-fixed": "#141d21",
+              "surface-container-highest": "#d3e4fe",
+              "secondary-fixed": "#dbe4ea",
+              "surface-container-lowest": "#ffffff",
+              "on-surface-variant": "#434655",
+              "on-error-container": "#93000a",
+              "on-background": "#0b1c30",
+              "on-error": "#ffffff",
+              "surface-container-low": "#eff4ff",
+              "on-tertiary-container": "#bdffdb",
+              "on-secondary-container": "#5d666b",
+              "on-primary": "#ffffff",
+              "secondary-container": "#dbe4ea",
+              "on-primary-fixed": "#00174b",
+              "surface-dim": "#cbdbf5",
+              "on-secondary": "#ffffff",
+              "surface-container-high": "#dce9ff",
+              "secondary-fixed-dim": "#bfc8ce",
+              "inverse-surface": "#213145",
+              "tertiary-fixed-dim": "#4edea3",
+              "background": "#f8f9ff",
+              "primary-fixed-dim": "#b4c5ff",
+              "on-primary-container": "#eeefff",
+              "surface-tint": "#0053db",
+              "secondary": "#576065",
+              "primary-container": "#2563eb",
+              "primary": "#004ac6",
+              "on-primary-fixed-variant": "#003ea8",
+              "on-secondary-fixed-variant": "#3f484d",
+              "tertiary-fixed": "#6ffbbe",
+              "inverse-primary": "#b4c5ff",
+              "error": "#ba1a1a",
+              "on-tertiary-fixed-variant": "#005236",
+              "surface-bright": "#f8f9ff",
+              "on-tertiary": "#ffffff",
+              "tertiary-container": "#007d55",
+              "error-container": "#ffdad6",
+              "surface": "#f8f9ff",
+              "inverse-on-surface": "#eaf1ff",
+              "outline": "#737686",
+              "surface-container": "#e5eeff",
+              "on-tertiary-fixed": "#002113",
+              "tertiary": "#006242"
+            },
+            "borderRadius": {
+              "DEFAULT": "0.25rem",
+              "lg": "0.5rem",
+              "xl": "0.75rem",
+              "full": "9999px"
+            },
+            "spacing": {
+              "gutter": "16px",
+              "margin-mobile": "20px",
+              "xl": "32px",
+              "lg": "24px",
+              "base": "4px",
+              "sm": "12px",
+              "xs": "8px",
+              "md": "16px"
+            },
+            "fontFamily": {
+              "body-md": ["Inter"],
+              "headline-sm": ["Plus Jakarta Sans"],
+              "display-lg": ["Plus Jakarta Sans"],
+              "headline-md": ["Plus Jakarta Sans"],
+              "body-sm": ["Inter"],
+              "label-md": ["Inter"],
+              "display-lg-mobile": ["Plus Jakarta Sans"],
+              "body-lg": ["Inter"]
+            },
+            "fontSize": {
+              "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+              "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+              "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+              "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+              "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+              "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+              "display-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+              "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+        body {
+            background-color: #f8f9ff;
+            -webkit-tap-highlight-color: transparent;
+            min-height: max(884px, 100dvh);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .option-button {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant/30">
+    <div class="flex justify-between items-center px-margin-mobile py-sm w-full max-w-7xl mx-auto">
+        <div class="flex items-center gap-sm">
+            <a href="{% url 'mock_tests' %}" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors active:scale-95">
+                <span class="material-symbols-outlined text-primary">arrow_back</span>
+            </a>
+            <h1 class="font-headline-md text-headline-md text-primary tracking-tight">Mock Test Practice</h1>
+        </div>
+        <div id="timer-badge" class="hidden flex items-center gap-xs px-md py-xs rounded-full bg-primary-container text-on-primary-container font-semibold border border-primary/20">
+            <span class="material-symbols-outlined text-[18px]">alarm</span>
+            <span id="timer-display">30:00</span>
+        </div>
+    </div>
+</header>
+
+<main class="pt-24 px-margin-mobile max-w-4xl mx-auto">
+    <!-- Loading State -->
+    <div id="loading-container" class="flex flex-col items-center justify-center py-xl text-center min-h-[60vh] space-y-md">
+        <div class="relative w-20 h-20">
+            <svg class="animate-spin h-full w-full text-primary" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+        </div>
+        <h3 class="font-headline-md text-headline-md text-on-surface">Generating Practice Exam Questions</h3>
+        <p class="text-secondary max-w-md">Gemini is analyzing the past year board questions for <strong class="text-primary font-bold">"{{ chapter }}"</strong> to seed dynamic MCQs and expected questions...</p>
+    </div>
+
+    <!-- Error State -->
+    <div id="error-container" class="hidden flex flex-col items-center justify-center py-xl text-center min-h-[60vh] space-y-md">
+        <span class="material-symbols-outlined text-[64px] text-error">error</span>
+        <h3 class="font-headline-md text-headline-md text-on-surface">Failed to Create Test</h3>
+        <p id="error-text" class="text-secondary max-w-md">The Gemini API encountered an error or returned invalid structured data. Please try again.</p>
+        <button onclick="fetchTestData()" class="bg-primary hover:bg-primary-container text-white px-lg py-sm rounded-full active:scale-95 transition-all flex items-center gap-xs font-semibold shadow-md">
+            <span class="material-symbols-outlined text-[20px]">refresh</span>
+            RETRY NOW
+        </button>
+    </div>
+
+    <!-- Main Exam Container -->
+    <div id="exam-container" class="hidden space-y-lg">
+        <!-- Chapter Header Banner -->
+        <div class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-lg shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-md relative overflow-hidden group">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-primary-fixed-dim/20 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
+            <div class="space-y-xs z-10">
+                <span class="text-label-md text-primary font-bold uppercase tracking-widest">CHAPTER EXAM PRACTICE</span>
+                <h2 class="font-display-lg text-on-surface font-extrabold tracking-tight">{{ chapter }}</h2>
+                <p class="text-secondary text-body-md">Practice set combining dynamically formulated concept MCQs & expected questions.</p>
+            </div>
+            <div class="z-10 shrink-0">
+                <span id="exam-stats-badge" class="px-sm py-base rounded bg-tertiary-container text-on-tertiary-container text-xs font-bold uppercase tracking-wider">20 MCQs + 5 Expected</span>
+            </div>
+        </div>
+
+        <!-- Section Selectors (Tabs) -->
+        <div class="flex border-b border-outline-variant/30">
+            <button onclick="switchTab('mcqs')" id="tab-mcqs" class="px-lg py-sm font-semibold border-b-2 border-primary text-primary transition-all flex items-center gap-xs focus:outline-none">
+                <span class="material-symbols-outlined text-[20px]">quiz</span>
+                MCQ Section
+            </button>
+            <button onclick="switchTab('expected')" id="tab-expected" class="px-lg py-sm font-semibold border-b-2 border-transparent text-secondary hover:text-on-surface transition-all flex items-center gap-xs focus:outline-none">
+                <span class="material-symbols-outlined text-[20px]">assignment</span>
+                Expected Questions
+            </button>
+        </div>
+
+        <!-- Score Banner (Initially Hidden) -->
+        <div id="score-banner" class="hidden bg-tertiary-container text-on-tertiary-container p-lg rounded-2xl border border-tertiary/20 flex flex-col md:flex-row items-center justify-between gap-md">
+            <div>
+                <h3 class="font-headline-sm text-headline-sm font-extrabold flex items-center gap-xs">
+                    <span class="material-symbols-outlined animate-bounce">celebration</span>
+                    Test Submitted!
+                </h3>
+                <p class="text-body-sm text-on-tertiary-container/90 mt-xs">Scroll down to view correct answers and step-by-step explanations.</p>
+            </div>
+            <div class="text-right">
+                <span class="text-display-lg font-black tracking-tight" id="score-display">--</span>
+                <p class="text-label-md uppercase tracking-wider font-bold">MCQs CORRECT</p>
+            </div>
+        </div>
+
+        <!-- MCQ Section Panel -->
+        <div id="section-mcqs" class="space-y-md">
+            <!-- Questions will be injected here -->
+            <div id="mcq-list" class="space-y-md"></div>
+            
+            <!-- Submit Button Card -->
+            <div id="submit-card" class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-lg flex justify-between items-center shadow-sm">
+                <p class="text-secondary text-body-sm max-w-md">Make sure you have selected an option for all questions before submitting.</p>
+                <button onclick="submitTest()" class="bg-primary hover:bg-primary-container text-white px-xl py-sm rounded-full font-label-md active:scale-95 transition-all shadow-md flex items-center gap-xs uppercase font-extrabold tracking-wider">
+                    <span class="material-symbols-outlined text-[20px]">task_alt</span>
+                    Submit Test
+                </button>
+            </div>
+        </div>
+
+        <!-- Expected Questions Panel (Initially Hidden) -->
+        <div id="section-expected" class="hidden space-y-md">
+            <!-- Expected questions will be injected here -->
+            <div id="expected-list" class="space-y-md"></div>
+        </div>
+    </div>
+</main>
+
+<script>
+    let testData = null;
+    let quizSubmitted = false;
+    let timerInterval = null;
+    let timeRemaining = 30 * 60; // 30 minutes
+
+    document.addEventListener('DOMContentLoaded', () => {
+        fetchTestData();
+    });
+
+    function fetchTestData() {
+        document.getElementById('loading-container').classList.remove('hidden');
+        document.getElementById('error-container').classList.add('hidden');
+        document.getElementById('exam-container').classList.add('hidden');
+        document.getElementById('timer-badge').classList.add('hidden');
+
+        const chapter = encodeURIComponent("{{ chapter }}");
+        fetch(`/mock/start/api/?chapter=${chapter}`)
+            .then(res => {
+                if (!res.ok) throw new Error('API server returned error code');
+                return res.json();
+            })
+            .then(data => {
+                if (!data.mcqs || !data.expected) throw new Error('Invalid test structure');
+                testData = data;
+                renderTest();
+                startTimer();
+                // Update dynamic stats badge
+                const badgeEl = document.getElementById('exam-stats-badge');
+                if (badgeEl && testData) {
+                    badgeEl.textContent = `${testData.mcqs.length} MCQs + ${testData.expected.length} Expected`;
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                document.getElementById('loading-container').classList.add('hidden');
+                document.getElementById('error-container').classList.remove('hidden');
+                document.getElementById('error-text').textContent = err.message || "Failed to generate mock test questions.";
+            });
+    }
+
+    function startTimer() {
+        if (timerInterval) clearInterval(timerInterval);
+        timeRemaining = 30 * 60;
+        document.getElementById('timer-badge').classList.remove('hidden');
+        updateTimerDisplay();
+
+        timerInterval = setInterval(() => {
+            timeRemaining--;
+            updateTimerDisplay();
+            if (timeRemaining <= 0) {
+                clearInterval(timerInterval);
+                if (!quizSubmitted) {
+                    alert('Time is up! Submitting your mock test.');
+                    submitTest();
+                }
+            }
+        }, 1000);
+    }
+
+    function updateTimerDisplay() {
+        const mins = Math.floor(timeRemaining / 60);
+        const secs = timeRemaining % 60;
+        document.getElementById('timer-display').textContent = 
+            `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        
+        // Alert color if under 3 minutes
+        if (timeRemaining < 3 * 60) {
+            const displayBadge = document.getElementById('timer-badge');
+            displayBadge.classList.remove('bg-primary-container', 'text-on-primary-container');
+            displayBadge.classList.add('bg-error-container', 'text-on-error-container', 'animate-pulse');
+        }
+    }
+
+    function renderTest() {
+        document.getElementById('loading-container').classList.add('hidden');
+        document.getElementById('exam-container').classList.remove('hidden');
+
+        // Render MCQs
+        const mcqList = document.getElementById('mcq-list');
+        mcqList.innerHTML = '';
+        testData.mcqs.forEach((q, qIndex) => {
+            const card = document.createElement('div');
+            card.className = "bg-surface-container-lowest border border-outline-variant rounded-2xl p-lg shadow-sm space-y-md";
+            
+            let optionsHTML = '';
+            for (const [key, value] of Object.entries(q.options)) {
+                optionsHTML += `
+                    <label class="option-button flex items-center gap-md p-md rounded-xl border border-outline-variant hover:bg-surface-container-low cursor-pointer hover:border-primary/50 relative">
+                        <input type="radio" name="mcq-${qIndex}" value="${key}" class="w-5 h-5 text-primary bg-surface border-outline-variant focus:ring-primary focus:ring-offset-0 focus:ring-1">
+                        <div class="flex items-center gap-xs">
+                            <span class="font-bold text-primary mr-1">${key}.</span>
+                            <span class="text-on-surface font-semibold text-body-md">${value}</span>
+                        </div>
+                    </label>
+                `;
+            }
+
+            card.innerHTML = `
+                <div class="flex justify-between items-start">
+                    <span class="px-sm py-base rounded bg-primary/10 text-primary text-xs font-extrabold uppercase">QUESTION ${qIndex + 1}</span>
+                    <span class="text-secondary text-xs">1 Mark</span>
+                </div>
+                <h4 class="font-headline-sm text-on-surface font-bold leading-snug">${q.question}</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-sm pt-xs">
+                    ${optionsHTML}
+                </div>
+                <!-- Explanation Panel (Hidden initially) -->
+                <div id="explanation-${qIndex}" class="hidden p-md bg-surface-container-low border border-outline-variant/30 rounded-xl space-y-sm">
+                    <div class="flex items-center gap-xs text-primary font-bold text-label-md">
+                        <span class="material-symbols-outlined text-[18px]">psychology</span>
+                        STEP-BY-STEP EXPLANATION
+                    </div>
+                    <p class="text-secondary text-body-sm leading-relaxed">${q.explanation}</p>
+                </div>
+            `;
+            mcqList.appendChild(card);
+        });
+
+        // Render Expected Questions
+        const expectedList = document.getElementById('expected-list');
+        expectedList.innerHTML = '';
+        testData.expected.forEach((q, qIndex) => {
+            const card = document.createElement('div');
+            card.className = "bg-surface-container-lowest border border-outline-variant rounded-2xl p-lg shadow-sm space-y-md";
+            card.innerHTML = `
+                <div class="flex justify-between items-start">
+                    <span class="px-sm py-base rounded bg-tertiary-container text-on-tertiary-container text-xs font-extrabold uppercase">EXPECTED Q ${qIndex + 1}</span>
+                    <span class="text-secondary text-xs">Conceptual / Verified PYQ</span>
+                </div>
+                <h4 class="font-headline-sm text-on-surface font-bold leading-snug">${q.question}</h4>
+                <div class="pt-base border-t border-outline-variant/30 flex justify-between items-center gap-md">
+                    <p class="text-secondary text-body-sm">Test your thinking, then click to reveal the verified model solution.</p>
+                    <button onclick="toggleExpectedAnswer(${qIndex})" id="btn-expected-${qIndex}" class="shrink-0 bg-secondary-container hover:bg-surface-variant text-on-secondary-container px-md py-sm rounded-full font-label-md active:scale-95 transition-all flex items-center gap-xs font-semibold text-xs border border-outline-variant/10">
+                        <span class="material-symbols-outlined text-[16px]">visibility</span>
+                        Reveal Solution
+                    </button>
+                </div>
+                <div id="ans-expected-${qIndex}" class="hidden p-md bg-tertiary-container/10 border border-tertiary/20 rounded-xl space-y-sm">
+                    <div class="flex items-center gap-xs text-tertiary font-bold text-label-md">
+                        <span class="material-symbols-outlined text-[18px]">verified_user</span>
+                        MODEL ANSWER & REVISION PRINCIPLE
+                    </div>
+                    <p class="text-secondary text-body-sm leading-relaxed">${q.answer}</p>
+                </div>
+            `;
+            expectedList.appendChild(card);
+        });
+
+        // Set radio buttons animation and active states
+        const options = document.querySelectorAll('.option-button');
+        options.forEach(opt => {
+            const radio = opt.querySelector('input[type="radio"]');
+            radio.addEventListener('change', () => {
+                // Clear sibling option selections visually
+                const siblings = radio.closest('.grid').querySelectorAll('.option-button');
+                siblings.forEach(sib => {
+                    sib.classList.remove('border-primary', 'bg-primary-container/10');
+                    sib.classList.add('border-outline-variant');
+                });
+                if (radio.checked) {
+                    opt.classList.remove('border-outline-variant');
+                    opt.classList.add('border-primary', 'bg-primary-container/10');
+                }
+            });
+        });
+    }
+
+    function switchTab(tab) {
+        if (tab === 'mcqs') {
+            document.getElementById('section-mcqs').classList.remove('hidden');
+            document.getElementById('section-expected').classList.add('hidden');
+            
+            document.getElementById('tab-mcqs').classList.add('border-primary', 'text-primary');
+            document.getElementById('tab-mcqs').classList.remove('border-transparent', 'text-secondary');
+            
+            document.getElementById('tab-expected').classList.add('border-transparent', 'text-secondary');
+            document.getElementById('tab-expected').classList.remove('border-primary', 'text-primary');
+        } else {
+            document.getElementById('section-mcqs').classList.add('hidden');
+            document.getElementById('section-expected').classList.remove('hidden');
+            
+            document.getElementById('tab-expected').classList.add('border-primary', 'text-primary');
+            document.getElementById('tab-expected').classList.remove('border-transparent', 'text-secondary');
+            
+            document.getElementById('tab-mcqs').classList.add('border-transparent', 'text-secondary');
+            document.getElementById('tab-mcqs').classList.remove('border-primary', 'text-primary');
+        }
+    }
+
+    function toggleExpectedAnswer(index) {
+        const ans = document.getElementById(`ans-expected-${index}`);
+        const btn = document.getElementById(`btn-expected-${index}`);
+        const icon = btn.querySelector('.material-symbols-outlined');
+        
+        if (ans.classList.contains('hidden')) {
+            ans.classList.remove('hidden');
+            btn.classList.add('bg-tertiary-container', 'text-on-tertiary-container', 'border-tertiary/20');
+            btn.classList.remove('bg-secondary-container', 'text-on-secondary-container');
+            icon.textContent = 'visibility_off';
+            btn.innerHTML = `<span class="material-symbols-outlined text-[16px]">visibility_off</span> Hide Solution`;
+        } else {
+            ans.classList.add('hidden');
+            btn.classList.remove('bg-tertiary-container', 'text-on-tertiary-container', 'border-tertiary/20');
+            btn.classList.add('bg-secondary-container', 'text-on-secondary-container');
+            icon.textContent = 'visibility';
+            btn.innerHTML = `<span class="material-symbols-outlined text-[16px]">visibility</span> Reveal Solution`;
+        }
+    }
+
+    function submitTest() {
+        if (quizSubmitted) return;
+        
+        clearInterval(timerInterval);
+        quizSubmitted = true;
+        document.getElementById('timer-badge').classList.add('hidden');
+
+        let score = 0;
+        testData.mcqs.forEach((q, qIndex) => {
+            const selectedRadio = document.querySelector(`input[name="mcq-${qIndex}"]:checked`);
+            const selectedVal = selectedRadio ? selectedRadio.value : null;
+            const correctVal = q.correct_option;
+
+            // Display explanations
+            document.getElementById(`explanation-${qIndex}`).classList.remove('hidden');
+
+            // Find options HTML cards inside the grid
+            const radios = document.querySelectorAll(`input[name="mcq-${qIndex}"]`);
+            radios.forEach(radio => {
+                // Disable option radio inputs
+                radio.disabled = true;
+
+                const parentLabel = radio.closest('.option-button');
+                const optionVal = radio.value;
+
+                parentLabel.classList.remove('border-primary', 'bg-primary-container/10', 'hover:bg-surface-container-low', 'hover:border-primary/50');
+
+                // Green/red highlights based on correct/wrong options
+                if (optionVal === correctVal) {
+                    parentLabel.classList.add('border-tertiary-container', 'bg-tertiary-container/20', 'text-on-tertiary-container');
+                    const badge = document.createElement('span');
+                    badge.className = "material-symbols-outlined text-tertiary absolute right-3 top-3.5 text-[20px] font-bold";
+                    badge.textContent = "check_circle";
+                    parentLabel.appendChild(badge);
+                } else if (selectedVal === optionVal) {
+                    parentLabel.classList.add('border-error-container', 'bg-error-container/20', 'text-on-error-container');
+                    const badge = document.createElement('span');
+                    badge.className = "material-symbols-outlined text-error absolute right-3 top-3.5 text-[20px] font-bold";
+                    badge.textContent = "cancel";
+                    parentLabel.appendChild(badge);
+                }
+            });
+
+            if (selectedVal === correctVal) {
+                score++;
+            }
+        });
+
+        // Show Score Banner
+        document.getElementById('score-banner').classList.remove('hidden');
+        document.getElementById('score-display').textContent = `${score} / ${testData.mcqs.length}`;
+        document.getElementById('submit-card').classList.add('hidden');
+
+        // Scroll to score banner smoothly
+        document.getElementById('score-banner').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        // Increment Mock Tests Completed in localStorage
+        try {
+            let mockTests = JSON.parse(localStorage.getItem('practiced_mock_tests') || '[]');
+            const testId = "{{ chapter|escapejs }}";
+            if (!mockTests.includes(testId)) {
+                mockTests.push(testId);
+                localStorage.setItem('practiced_mock_tests', JSON.stringify(mockTests));
+            }
+            
+            // Also store completed count in localStorage for fallback profile counts
+            let count = parseInt(localStorage.getItem('completed_mock_tests_count') || '0');
+            localStorage.setItem('completed_mock_tests_count', count + 1);
+        } catch(e) {
+            console.error('Error saving mock test completion:', e);
+        }
+    }
+</script>
+</body>
+</html>

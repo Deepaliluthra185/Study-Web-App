@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Register - PYQHub</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        theme: {
+          extend: {
+            "colors": {
+              "midnight": "#0b0c10",
+              "midnight-light": "#1f2833",
+              "accent-gold": "#f5b041",
+              "accent-blue": "#45f3ff",
+              "primary": "#004ac6",
+              "primary-container": "#2563eb",
+              "on-surface": "#0b1c30",
+              "secondary": "#576065",
+              "background": "#f8f9ff"
+            },
+            "fontFamily": {
+              "body": ["Inter"],
+              "title": ["Plus Jakarta Sans"]
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f8f9ff 0%, #e2e8f0 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-md">
+    <div class="w-full max-w-md glass-card rounded-2xl p-lg space-y-md relative overflow-hidden group">
+        <!-- Accent circles -->
+        <div class="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-bl-full -mr-8 -mt-8"></div>
+        <div class="absolute bottom-0 left-0 w-16 h-16 bg-accent-gold/10 rounded-tr-full -ml-4 -mb-4"></div>
+
+        <div class="text-center z-10 relative">
+            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mx-auto mb-xs">
+                <span class="material-symbols-outlined text-[28px]">person_add</span>
+            </div>
+            <h1 class="font-title text-headline-md font-bold text-on-surface">Create Account</h1>
+            <p class="text-body-sm text-secondary mt-base">Sign up to practice year-wise PYQs and track your streak</p>
+        </div>
+
+        {% if form.errors %}
+        <div class="p-md bg-error-container/20 border border-error/30 text-error text-body-sm rounded-xl space-y-xs z-10 relative">
+            <div class="flex items-center gap-xs font-semibold">
+                <span class="material-symbols-outlined text-sm font-bold">warning</span>
+                Registration failed
+            </div>
+            <ul class="list-disc pl-md text-xs">
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <form method="POST" class="space-y-md z-10 relative">
+            {% csrf_token %}
+            
+            <div class="space-y-xs">
+                <label class="block text-body-sm font-semibold text-secondary">Username</label>
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-3 top-3 text-secondary text-[20px]">person</span>
+                    <input type="text" name="username" required value="{{ form.username.value|default:'' }}" class="w-full pl-10 pr-4 py-sm rounded-xl border border-outline-variant bg-surface-container-low text-on-surface text-body-sm focus:ring-primary focus:border-primary placeholder:text-secondary/50" placeholder="Choose a username...">
+                </div>
+            </div>
+
+            <div class="space-y-xs">
+                <label class="block text-body-sm font-semibold text-secondary">Email Address</label>
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-3 top-3 text-secondary text-[20px]">mail</span>
+                    <input type="email" name="email" required value="{{ form.email.value|default:'' }}" class="w-full pl-10 pr-4 py-sm rounded-xl border border-outline-variant bg-surface-container-low text-on-surface text-body-sm focus:ring-primary focus:border-primary placeholder:text-secondary/50" placeholder="Enter your email...">
+                </div>
+            </div>
+
+            <div class="space-y-xs">
+                <label class="block text-body-sm font-semibold text-secondary">Password</label>
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-3 top-3 text-secondary text-[20px]">key</span>
+                    <input type="password" name="password1" required class="w-full pl-10 pr-4 py-sm rounded-xl border border-outline-variant bg-surface-container-low text-on-surface text-body-sm focus:ring-primary focus:border-primary placeholder:text-secondary/50" placeholder="Create a strong password...">
+                </div>
+            </div>
+
+            <div class="space-y-xs">
+                <label class="block text-body-sm font-semibold text-secondary">Confirm Password</label>
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-3 top-3 text-secondary text-[20px]">key</span>
+                    <input type="password" name="password2" required class="w-full pl-10 pr-4 py-sm rounded-xl border border-outline-variant bg-surface-container-low text-on-surface text-body-sm focus:ring-primary focus:border-primary placeholder:text-secondary/50" placeholder="Confirm your password...">
+                </div>
+            </div>
+
+            <button type="submit" class="w-full h-[46px] bg-primary hover:bg-primary-container text-white rounded-xl font-label-md flex items-center justify-center gap-xs shadow active:scale-95 transition-all uppercase tracking-wider font-extrabold text-sm">
+                Get Started
+                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+            </button>
+        </form>
+
+        <div class="text-center text-body-sm text-secondary pt-xs border-t border-outline-variant/30 z-10 relative">
+            Already have an account? 
+            <a href="{% url 'login' %}" class="text-primary font-bold hover:underline">Log in here</a>
+        </div>
+    </div>
+</body>
+</html>
