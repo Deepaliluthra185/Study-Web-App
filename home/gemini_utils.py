@@ -1,6 +1,8 @@
 from google import genai
 
-client = genai.Client(api_key="AIzaSyDCAW-kEqzVwcStxUh585ZRIIT62AFb5l0")
+import os
+client = genai.Client()
+
 
 
 def classify_questions(text):
