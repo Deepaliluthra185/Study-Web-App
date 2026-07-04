@@ -1,7 +1,20 @@
 from google import genai
-
 import os
-client = genai.Client()
+
+client = None
+
+def get_client():
+    global client
+    if client is None:
+        try:
+            client = genai.Client()
+        except Exception as e:
+            raise ValueError(
+                "Gemini API key is not configured. Please set the GEMINI_API_KEY environment variable. "
+                "For Windows PowerShell, run: [System.Environment]::SetEnvironmentVariable('GEMINI_API_KEY', 'your_key_here', 'User')"
+            ) from e
+    return client
+
 
 
 
@@ -42,7 +55,7 @@ Paper:
 {text}
 """
 
-    response = client.models.generate_content(
+    response = get_client().models.generate_content(
         model="gemini-2.5-flash",
         contents=prompt
     )
@@ -62,7 +75,7 @@ Question:
 Format the output cleanly in HTML/Markdown format. Do not use complex layout symbols. Keep it readable.
 """
     try:
-        response = client.models.generate_content(
+        response = get_client().models.generate_content(
             model="gemini-2.5-flash",
             contents=prompt
         )
@@ -109,7 +122,7 @@ Rules:
 - Base the questions on the following concepts and past questions:
 {questions_text}
 """
-    response = client.models.generate_content(
+    response = get_client().models.generate_content(
         model="gemini-2.5-flash",
         contents=prompt
     )
