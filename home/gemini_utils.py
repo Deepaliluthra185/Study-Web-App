@@ -1,7 +1,18 @@
 from google import genai
 import os
 
+# Dynamically load from local .env file if it exists (pure Python implementation)
+env_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '.env')
+if os.path.exists(env_path):
+    with open(env_path, 'r', encoding='utf-8') as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith('#') and '=' in line:
+                key, val = line.split('=', 1)
+                os.environ[key.strip()] = val.strip().strip('"').strip("'")
+
 client = None
+
 
 def get_client():
     global client
